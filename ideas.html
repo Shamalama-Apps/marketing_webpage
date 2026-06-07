@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Got an idea?, Shamalama</title>
+<meta name="description" content="No idea where to start? Pre-funding, limited budget, a half-formed plan? Shamalama turns a sentence into a prototype you can show people, fast." />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* step layout */
+  .step-num{ font-family:var(--font-disp); font-weight:800; font-size:clamp(40px,6vw,80px); color:var(--coral); line-height:1; }
+  .step-head{ display:flex; align-items:baseline; gap:18px; margin-bottom:28px; }
+  .step-head h2{ font-weight:800; font-size:clamp(26px,3.6vw,44px); line-height:1; }
+
+  /* chat bubble */
+  .ask-wrap{ display:flex; gap:16px; align-items:flex-start; }
+  .ask-ava{ flex:0 0 auto; width:54px; height:54px; border-radius:50%; background:var(--grape); border:var(--bw) solid var(--ink); display:flex; align-items:center; justify-content:center; font-family:var(--font-disp); font-weight:800; color:var(--paper); font-size:20px; box-shadow:3px 3px 0 var(--ink); }
+  .bubble{ background:var(--paper); border:var(--bw) solid var(--ink); border-radius:6px 22px 22px 22px; padding:24px 28px; box-shadow:var(--shadow); max-width:62ch; }
+  .bubble p{ font-size:clamp(18px,2.3vw,26px); font-weight:600; font-family:var(--font-disp); letter-spacing:-0.01em; line-height:1.2; }
+  .bubble .who{ font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); margin-top:12px; }
+
+  /* intake form mock in browser frame */
+  .intake{ background:var(--paper-2); padding:34px 34px 38px; }
+  .intake .ititle{ font-family:var(--font-disp); font-weight:800; font-size:24px; }
+  .intake .isub{ font-size:14px; color:var(--ink-soft); margin-top:4px; margin-bottom:24px; }
+  .qbox{ background:var(--paper); border:var(--bw) solid var(--ink); border-radius:16px; padding:20px 22px; margin-bottom:16px; }
+  .qbox .q{ font-family:var(--font-disp); font-weight:700; font-size:16px; margin-bottom:13px; }
+  .qbox .q .n{ font-family:var(--font-mono); font-size:12px; color:var(--coral-d); margin-right:8px; }
+  .filled{ font-family:var(--font-body); font-size:15.5px; font-weight:500; background:var(--paper-2); border:2px dashed var(--ink); border-radius:10px; padding:11px 14px; }
+  .checks{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  @media(max-width:600px){ .checks{ grid-template-columns:1fr; } }
+  .check{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:14.5px; padding:9px 12px; border:2px solid var(--ink); border-radius:10px; cursor:pointer; user-select:none; transition:background .14s; }
+  .check .box{ width:20px; height:20px; border:2.5px solid var(--ink); border-radius:6px; display:flex; align-items:center; justify-content:center; flex:0 0 auto; background:var(--paper); }
+  .check.on{ background:var(--mint); } .check.on .box{ background:var(--ink); color:var(--paper); }
+  .gen-btn{ margin-top:8px; }
+
+  /* prototype outputs */
+  .protos{ display:grid; grid-template-columns:1.35fr 0.65fr; gap:26px; align-items:start; }
+  @media(max-width:880px){ .protos{ grid-template-columns:1fr; } }
+  .proto-label{ font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); margin-bottom:12px; display:flex; gap:8px; align-items:center; }
+  .proto-label .dot{ width:9px; height:9px; border-radius:50%; background:var(--coral); }
+
+  /* ===== crochet client mock (warm, soft, deliberately NOT our house style) ===== */
+  .cro{ --cream:#f6efe3; --terra:#c4714e; --terra-d:#a85b3c; --sage:#8a9a78; --brown:#3f342b; --soft:#ece0cd;
+        font-family:"DM Sans",system-ui,sans-serif; color:var(--brown); background:var(--cream); }
+  .cro-nav{ display:flex; align-items:center; gap:18px; padding:14px 20px; border-bottom:1px solid var(--soft); font-size:13px; }
+  .cro-nav .logo{ font-weight:800; font-size:17px; color:var(--terra-d); letter-spacing:-0.02em; margin-right:auto; }
+  .cro-nav .lnk{ color:var(--brown); opacity:0.8; }
+  .cro-nav .cart{ background:var(--terra); color:#fff; padding:6px 13px; border-radius:999px; font-weight:600; }
+  .cro-hero{ padding:34px 30px; display:grid; grid-template-columns:1.2fr 1fr; gap:24px; align-items:center; background:linear-gradient(180deg,#faf4ea,var(--cream)); }
+  @media(max-width:600px){ .cro-hero{ grid-template-columns:1fr; } }
+  .cro-hero h3{ font-family:"DM Sans"; font-weight:800; font-size:30px; line-height:1.05; letter-spacing:-0.02em; }
+  .cro-hero p{ font-size:14px; margin-top:10px; opacity:0.8; }
+  .cro-hero button{ margin-top:16px; background:var(--terra); color:#fff; border:0; padding:11px 20px; border-radius:999px; font-weight:700; font-size:14px; cursor:pointer; }
+  .cro-hero .hswatch{ aspect-ratio:1; border-radius:18px; background:repeating-linear-gradient(45deg,#d98e6a 0 10px,#cd7e58 10px 20px); box-shadow:inset 0 0 0 6px rgba(255,255,255,.35); }
+  .cro-shelf{ padding:26px 30px 32px; }
+  .cro-shelf .st{ font-weight:800; font-size:16px; margin-bottom:16px; }
+  .cro-grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media(max-width:600px){ .cro-grid3{ grid-template-columns:1fr 1fr; } }
+  .cro-card{ background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 6px 18px rgba(63,52,43,.08); }
+  .cro-card .sw{ aspect-ratio:4/3; }
+  .cro-card .meta{ padding:10px 12px 13px; }
+  .cro-card .nm{ font-weight:700; font-size:13.5px; }
+  .cro-card .pr{ font-size:13px; color:var(--terra-d); font-weight:700; margin-top:3px; }
+  .cro-card .rt{ font-size:11px; opacity:0.6; margin-top:2px; }
+
+  /* phone app variant */
+  .croapp{ font-family:"DM Sans",system-ui,sans-serif; color:#3f342b; background:#f6efe3; height:100%; display:flex; flex-direction:column; }
+  .croapp .top{ padding:30px 18px 14px; }
+  .croapp .top .h{ font-weight:800; font-size:18px; color:#a85b3c; }
+  .croapp .top .s{ font-size:11px; opacity:0.7; margin-top:2px; }
+  .croapp .feat{ margin:0 16px; border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 6px 16px rgba(63,52,43,.1); }
+  .croapp .feat .sw{ height:120px; }
+  .croapp .feat .cap{ padding:11px 13px; }
+  .croapp .feat .cap .nm{ font-weight:700; font-size:14px; }
+  .croapp .feat .cap .pr{ font-size:12px; color:#a85b3c; font-weight:700; margin-top:2px; }
+  .croapp .rows{ padding:14px 16px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .croapp .row{ display:flex; gap:11px; align-items:center; background:#fff; border-radius:12px; padding:9px; box-shadow:0 3px 10px rgba(63,52,43,.07); }
+  .croapp .row .sw{ width:48px; height:48px; border-radius:9px; flex:0 0 auto; }
+  .croapp .row .nm{ font-weight:700; font-size:13px; }
+  .croapp .row .pr{ font-size:12px; color:#a85b3c; font-weight:700; margin-top:2px; }
+  .croapp .tabs{ display:flex; justify-content:space-around; padding:12px 0 14px; border-top:1px solid #ece0cd; background:#fff; font-size:10px; }
+  .croapp .tabs span{ opacity:0.55; } .croapp .tabs span.on{ color:#c4714e; opacity:1; font-weight:700; }
+  .sw-a{ background:repeating-linear-gradient(45deg,#d98e6a 0 9px,#cd7e58 9px 18px); }
+  .sw-b{ background:repeating-linear-gradient(135deg,#9aa886 0 9px,#8a9a78 9px 18px); }
+  .sw-c{ background:repeating-linear-gradient(45deg,#e3c27d 0 9px,#d9b566 9px 18px); }
+  .sw-d{ background:repeating-linear-gradient(135deg,#caa1bf 0 9px,#bb8fae 9px 18px); }
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="ball"></span>Shamalama</a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span></button>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="ideas.html" class="active">Ideas</a>
+      <a class="nav-cta" href="contact.html">Start a build</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" data-shapes>
+  <span class="blob circle" data-size="112" style="background:var(--yellow);"></span>
+  <span class="blob circle" data-size="64" style="background:var(--mint);"></span>
+  <span class="blob" data-size="84" data-rot="14" style="background:var(--coral);border-radius:15px;"></span>
+  <span class="blob" data-size="74" data-rot="45" style="background:var(--grape);"></span>
+  <span class="blob" data-size="96" style="background:var(--blue);border-radius:26px;"></span>
+  <span class="blob circle" data-size="52" style="background:var(--paper);"></span>
+  <div class="rv in">
+    <h1 class="mt-m" style="font-size:clamp(40px,7vw,98px);">No idea<br />where to <em class="hl">start?</em></h1>
+    <p class="hero-sub">Got an app or website you believe in, but you're pre-funding, on a tight budget, or just staring at a blank page? That's literally what we're here for. We turn a sentence into a prototype you can show people, at speed.</p>
+    <div class="hero-cta"><a class="btn btn-primary" href="contact.html">Tell us your idea</a><a class="btn btn-blue" href="#how">See it in action ↓</a></div>
+  </div>
+</header>
+
+<div class="marquee rv"><div class="mq-track">
+  <span>JUST AN IDEA?</span><span>PRE-FUNDING?</span><span>TIGHT BUDGET?</span><span>HALF A PLAN?</span><span>PERFECT.</span>
+  <span>JUST AN IDEA?</span><span>PRE-FUNDING?</span><span>TIGHT BUDGET?</span><span>HALF A PLAN?</span><span>PERFECT.</span>
+</div></div>
+
+<section class="block wrap" id="how">
+  <div class="sec-head rv">
+    <h2 class="sec-title mt-m">From "help me" to <em class="hl">here's a prototype</em>, let's walk one through.</h2>
+    <p class="lead mt-s">Say you make crochet patterns and want to sell them. Here's exactly how a chat with Shamalama goes.</p>
+  </div>
+</section>
+
+<!-- STEP 1 -->
+<section class="block tight wrap">
+  <div class="step-head rv"><span class="step-num">01</span><h2>You say…</h2></div>
+  <div class="ask-wrap rv">
+    <div class="ask-ava">C</div>
+    <div class="bubble">
+      <p>"Shamalama, help, I need a website for my start-up but I've no idea where to begin. I want to sell my crochet patterns online."</p>
+      <div class="who mono">, a brand-new founder, mid-panic</div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 2 -->
+<section class="block tight wrap">
+  <div class="step-head rv"><span class="step-num">02</span><h2>We ask the right questions.</h2></div>
+  <p class="lead rv" style="margin-bottom:26px;">No jargon, no 40-page brief. A few sharp questions get us from a vague idea to something we can actually build. Here's that intake, filled in for our crochet founder:</p>
+  <div class="browser rv">
+    <div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">shamalama.dev/start</span></div>
+    <div class="intake">
+      <div class="ititle">Tell us about your idea</div>
+      <div class="isub">Eight quick questions. Answer what you can, "not sure" is a totally fine answer.</div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">Q1</span>What are you building?</div>
+        <div class="seg" data-single>
+          <button class="opt-btn sel">Website</button><button class="opt-btn">Mobile app</button><button class="opt-btn">Both</button><button class="opt-btn">Not sure yet</button>
+        </div>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">Q2</span>In one line, what is it?</div>
+        <div class="filled">A little shop to sell my downloadable crochet patterns.</div>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">Q3</span>Who's it for?</div>
+        <div class="filled">Hobby crocheters, total beginners through to confident makers.</div>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">Q4</span>What should someone be able to <em>do</em>?</div>
+        <div class="checks">
+          <div class="check on"><span class="box">✓</span> Browse patterns</div>
+          <div class="check on"><span class="box">✓</span> Buy &amp; download instantly</div>
+          <div class="check on"><span class="box">✓</span> Save favourites</div>
+          <div class="check"><span class="box"></span> Read a how-to blog</div>
+          <div class="check"><span class="box"></span> Join a community</div>
+          <div class="check on"><span class="box">✓</span> Get an email list going</div>
+        </div>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">Q5</span>Pick a vibe.</div>
+        <div class="seg" data-single>
+          <button class="opt-btn sel">Warm &amp; cosy</button><button class="opt-btn">Bold &amp; playful</button><button class="opt-btn">Clean &amp; minimal</button><button class="opt-btn">Premium</button>
+        </div>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">Q6</span>Where are you right now?</div>
+        <div class="seg" data-single>
+          <button class="opt-btn">Just an idea</button><button class="opt-btn sel">Pre-funding</button><button class="opt-btn">Funded</button><button class="opt-btn">Already trading</button>
+        </div>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">Q7</span>Budget comfort?</div>
+        <div class="seg" data-single>
+          <button class="opt-btn sel">Shoestring</button><button class="opt-btn">Modest</button><button class="opt-btn">Flexible</button>
+        </div>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">Q8</span>When do you want something to show?</div>
+        <div class="seg" data-single>
+          <button class="opt-btn sel">As soon as possible</button><button class="opt-btn">A few weeks</button><button class="opt-btn">No rush</button>
+        </div>
+      </div>
+
+      <button class="btn btn-primary gen-btn">Generate starting points →</button>
+    </div>
+  </div>
+  <p class="mono rv" style="font-size:12.5px;color:var(--ink-soft);margin-top:14px;">↑ Go on, toggle the answers. This is a live mock of our intake.</p>
+</section>
+
+<!-- STEP 3 -->
+<section class="block tight wrap">
+  <div class="step-head rv"><span class="step-num">03</span><h2>You get prototypes, fast.</h2></div>
+  <p class="lead rv" style="margin-bottom:30px;">Days later, not months. Real, clickable directions for "Loop &amp; Loom", one as a warm shopfront site, one as a pocket app, so our founder can show friends, testers, and (soon) investors.</p>
+
+  <div class="protos rv">
+    <div>
+      <div class="proto-label mono"><span class="dot"></span> PROTOTYPE A · the shopfront website</div>
+      <div class="browser">
+        <div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">loopandloom.shop</span></div>
+        <div class="cro">
+          <div class="cro-nav">
+            <span class="logo">Loop &amp; Loom</span>
+            <span class="lnk">Shop</span><span class="lnk">Bundles</span><span class="lnk">About</span>
+            <span class="cart">Cart · 2</span>
+          </div>
+          <div class="cro-hero">
+            <div>
+              <h3>Cosy patterns for happy hooks.</h3>
+              <p>Instant-download crochet patterns, written to actually follow. Make something lovely this weekend.</p>
+              <button>Browse the patterns</button>
+            </div>
+            <div class="hswatch"></div>
+          </div>
+          <div class="cro-shelf">
+            <div class="st">Most-loved patterns</div>
+            <div class="cro-grid3">
+              <div class="cro-card"><div class="sw sw-a"></div><div class="meta"><div class="nm">Granny Square Blanket</div><div class="pr">£4.50</div><div class="rt">★ 4.9 · 312</div></div></div>
+              <div class="cro-card"><div class="sw sw-b"></div><div class="meta"><div class="nm">Sage Market Bag</div><div class="pr">£3.00</div><div class="rt">★ 4.8 · 188</div></div></div>
+              <div class="cro-card"><div class="sw sw-c"></div><div class="meta"><div class="nm">Sunshine Baby Hat</div><div class="pr">£2.50</div><div class="rt">★ 5.0 · 96</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="proto-label mono"><span class="dot"></span> PROTOTYPE B · the pocket app</div>
+      <div class="phone" style="max-width:300px;margin:0 auto;">
+        <div class="notch"></div>
+        <div class="croapp" style="height:560px;">
+          <div class="top"><div class="h">Loop &amp; Loom</div><div class="s">Hi maker, what shall we make today?</div></div>
+          <div class="feat"><div class="sw sw-d"></div><div class="cap"><div class="nm">Cloudsoft Cardigan</div><div class="pr">£5.50 · pattern of the week</div></div></div>
+          <div class="rows">
+            <div class="row"><div class="sw sw-a"></div><div><div class="nm">Granny Square Blanket</div><div class="pr">£4.50</div></div></div>
+            <div class="row"><div class="sw sw-b"></div><div><div class="nm">Sage Market Bag</div><div class="pr">£3.00</div></div></div>
+            <div class="row"><div class="sw sw-c"></div><div><div class="nm">Sunshine Baby Hat</div><div class="pr">£2.50</div></div></div>
+          </div>
+          <div class="tabs"><span class="on">Shop</span><span>Saved</span><span>Library</span><span>You</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="mono rv" style="font-size:12.5px;color:var(--ink-soft);margin-top:18px;">Two directions, one conversation. You pick what feels right, we build it out for real.</p>
+</section>
+
+<section class="cta-band">
+  <div class="wrap rv">
+    <h2>Your turn. <em>What's the idea?</em></h2>
+    <p>Crochet patterns or a category-defining app, if you believe in it, we'll help you show it.</p>
+    <div class="hero-cta"><a class="btn btn-paper" href="contact.html">Start the conversation</a><a class="btn btn-ink" href="index.html#work">See real builds →</a></div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="ball"></span>Shamalama</a>
+        <p class="foot-blurb">Female-led development studio. Front-end solutions and native apps for clients of every budget, written in-house in Cardiff, Wales.</p>
+      </div>
+      <div class="foot-col"><h5>Work</h5><a href="work-crossways.html">Crossways</a><a href="work-sysqo.html">Sysqo</a><a href="work-can-eat-will-eat.html">Can Eat, Will Eat</a></div>
+      <div class="foot-col"><h5>Studio</h5><a href="about.html">About Vanessa</a><a href="ideas.html">Got an idea?</a><a href="contact.html">Contact</a></div>
+    </div>
+    <div class="foot-base"><span class="mono">© 2026 Shamalama · Female-led · Every budget</span><span class="mono">Cardiff, Wales</span></div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+  // segmented single-select + checkbox toggles for the live intake mock
+  document.querySelectorAll('.seg[data-single]').forEach(function (seg) {
+    seg.querySelectorAll('.opt-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        seg.querySelectorAll('.opt-btn').forEach(function (x) { x.classList.remove('sel'); });
+        b.classList.add('sel');
+      });
+    });
+  });
+  document.querySelectorAll('.check').forEach(function (c) {
+    c.addEventListener('click', function () {
+      c.classList.toggle('on');
+      var box = c.querySelector('.box');
+      box.textContent = c.classList.contains('on') ? '✓' : '';
+    });
+  });
+  document.querySelector('.gen-btn').addEventListener('click', function () {
+    var s3 = document.querySelectorAll('.step-head')[2];
+    if (s3) s3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+</body>
+</html>

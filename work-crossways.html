@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crossways, a private residents' app · Shamalama</title>
+<meta name="description" content="Crossways: a private native residents' app built by Shamalama for the Crossways estate, shared spaces, bin days, and neighbour communication in one place." />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .proj-hero{ padding:64px 0 0; }
+  .proj-head{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:center; }
+  @media(max-width:880px){ .proj-head{ grid-template-columns:1fr; gap:34px; } }
+  .proj-title{ font-size:clamp(48px,8vw,104px); font-weight:800; line-height:0.9; margin-top:20px; }
+  .proj-tag{ font-size:clamp(18px,2.2vw,23px); font-weight:500; max-width:46ch; margin-top:20px; }
+  .meta-list{ display:flex; flex-wrap:wrap; gap:26px; margin-top:30px; }
+  .meta-list .m .k{ font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); }
+  .meta-list .m .v{ font-family:var(--font-disp); font-weight:700; font-size:17px; }
+  .hero-phones{ display:flex; gap:18px; justify-content:center; align-items:flex-start; }
+  .hero-phones .phone{ flex:0 0 auto; }
+  .hero-phones .phone:nth-child(2){ margin-top:34px; }
+  .feat-band{ background:var(--coral); border-block:3px solid var(--ink); }
+  .feat-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  @media(max-width:760px){ .feat-grid{ grid-template-columns:1fr; } }
+  .fcard{ background:var(--paper); border:3px solid var(--ink); border-radius:20px; padding:30px 28px; box-shadow:var(--shadow); }
+  .fcard .tagdot{ width:34px; height:34px; border-radius:9px; border:2.5px solid var(--ink); display:inline-block; }
+  .fcard h4{ font-weight:800; font-size:22px; margin:16px 0 8px; }
+  .fcard p{ font-size:15.5px; font-weight:500; }
+  .gallery{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  @media(max-width:760px){ .gallery{ grid-template-columns:1fr 1fr; } }
+  .gallery .phone{ width:100%; }
+  .next-row{ display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="ball"></span>Shamalama</a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span></button>
+    <div class="nav-links">
+      <a href="index.html#work" class="active">Work</a>
+      <a href="about.html">About</a>
+      <a href="ideas.html">Ideas</a>
+      <a class="nav-cta" href="contact.html">Start a build</a>
+    </div>
+  </div>
+</nav>
+
+<header class="proj-hero wrap">
+  <a class="back-link" href="index.html#work">← All work</a>
+  <div class="proj-head mt-m">
+    <div class="rv in">
+      <div class="chip-row"><span class="chip coral">DEPLOYED</span><span class="chip">NATIVE APP</span><span class="chip">iOS &amp; ANDROID</span></div>
+      <h1 class="proj-title">Crossways</h1>
+      <p class="proj-tag">A private app for the people of one estate, quietly keeping a whole community on the same page.</p>
+      <div class="meta-list">
+        <div class="m"><div class="k mono">CLIENT</div><div class="v">Crossways estate</div></div>
+        <div class="m"><div class="k mono">SCOPE</div><div class="v">Design + native build</div></div>
+        <div class="m"><div class="k mono">ACCESS</div><div class="v">Private / residents only</div></div>
+      </div>
+    </div>
+    <div class="hero-phones rv">
+      <div class="phone" style="width:178px;"><div class="notch"></div><div class="img-ph" style="width:100%;height:386px;"><span class="ph-lbl">drop · home screen</span></div></div>
+      <div class="phone" style="width:178px;"><div class="notch"></div><div class="img-ph" style="width:100%;height:386px;"><span class="ph-lbl">drop · bin days</span></div></div>
+    </div>
+  </div>
+</header>
+
+<section class="block wrap">
+  <div class="grid-2" style="gap:48px;align-items:start;">
+    <div class="rv">
+      <h2 class="sec-title mt-m">One estate. A dozen <em class="hl">tiny frustrations</em>.</h2>
+    </div>
+    <div class="rv">
+      <p class="lead">Shared bins, shared spaces, shared questions, and no good place to sort any of it. Crossways replaces the group chats, paper notices and "did anyone put the bins out?" with a single calm app made just for the people who live there.</p>
+      <p style="font-size:16px;font-weight:500;margin-top:18px;color:var(--ink-soft);">Built natively for iOS and Android, distributed privately to residents only.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block feat-band">
+  <div class="wrap">
+    <div class="sec-head rv"><h2 class="sec-title mt-m">Everything the estate needs, nothing it doesn't.</h2></div>
+    <div class="feat-grid rv">
+      <div class="fcard"><span class="tagdot" style="background:var(--blue);"></span><h4>Bin-day reminders</h4><p>Never miss a collection again. Clear, scheduled nudges so the right bins go out on the right night.</p></div>
+      <div class="fcard"><span class="tagdot" style="background:var(--mint);"></span><h4>Shared-space booking</h4><p>Reserve communal areas and facilities in a tap, no clashes, no double-booking, no awkward notes.</p></div>
+      <div class="fcard"><span class="tagdot" style="background:var(--yellow);"></span><h4>Neighbour noticeboard</h4><p>A friendly place to ask, offer and announce, the village hall pinboard, in everyone's pocket.</p></div>
+      <div class="fcard"><span class="tagdot" style="background:var(--grape);"></span><h4>Estate updates</h4><p>Important messages reach every resident directly, so nothing gets lost in a thread or left on a door.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block wrap">
+  <div class="sec-head rv"><h2 class="sec-title mt-m">Designed to feel like home.</h2></div>
+  <div class="gallery rv">
+    <div class="phone"><div class="notch"></div><div class="img-ph" style="width:100%;height:360px;"><span class="ph-lbl">drop · screen 1</span></div></div>
+    <div class="phone"><div class="notch"></div><div class="img-ph" style="width:100%;height:360px;"><span class="ph-lbl">drop · screen 2</span></div></div>
+    <div class="phone"><div class="notch"></div><div class="img-ph" style="width:100%;height:360px;"><span class="ph-lbl">drop · screen 3</span></div></div>
+  </div>
+</section>
+
+<section class="block tight wrap">
+  <div class="card rv" style="background:var(--ink);color:var(--paper);padding:52px 48px;">
+    <div class="grid-3 mt-m" style="gap:30px;">
+      <div><h4 style="color:var(--yellow);font-size:21px;font-weight:800;">Design</h4><p style="margin-top:10px;font-weight:500;color:oklch(0.85 0.01 280);">A warm, low-friction interface that any resident, of any age, can pick up without a tutorial.</p></div>
+      <div><h4 style="color:var(--yellow);font-size:21px;font-weight:800;">Native build</h4><p style="margin-top:10px;font-weight:500;color:oklch(0.85 0.01 280);">Built natively and written in-house for genuine speed and reliability on both iOS and Android.</p></div>
+      <div><h4 style="color:var(--yellow);font-size:21px;font-weight:800;">Private rollout</h4><p style="margin-top:10px;font-weight:500;color:oklch(0.85 0.01 280);">A closed distribution so the app stays for residents only, private by design.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block tight wrap">
+  <div class="next-row rv">
+    <div>
+      <div class="mono" style="font-size:13px;color:var(--ink-soft);">next project</div>
+      <a href="work-sysqo.html" style="font-family:var(--font-disp);font-weight:800;font-size:clamp(28px,4vw,44px);">Sysqo →</a>
+    </div>
+    <a class="btn btn-blue" href="contact.html">Building for your community? Let's talk</a>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap rv">
+    <h2>Got something to <em>build</em>?</h2>
+    <p>App, website or a half-formed idea, tell us what you're picturing and we'll find the fastest way there.</p>
+    <div class="hero-cta"><a class="btn btn-paper" href="contact.html">Start an enquiry</a><a class="btn btn-ink" href="ideas.html">See how we work →</a></div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="ball"></span>Shamalama</a>
+        <p class="foot-blurb">Female-led development studio. Front-end solutions and native apps for clients of every budget, written in-house in Cardiff, Wales.</p>
+      </div>
+      <div class="foot-col"><h5>Work</h5><a href="work-crossways.html">Crossways</a><a href="work-sysqo.html">Sysqo</a><a href="work-can-eat-will-eat.html">Can Eat, Will Eat</a></div>
+      <div class="foot-col"><h5>Studio</h5><a href="about.html">About Vanessa</a><a href="ideas.html">Got an idea?</a><a href="contact.html">Contact</a></div>
+    </div>
+    <div class="foot-base"><span class="mono">© 2026 Shamalama · Female-led · Every budget</span><span class="mono">Cardiff, Wales</span></div>
+  </div>
+</footer><script src="site.js"></script>
+</body>
+</html>

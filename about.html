@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About, Vanessa Latchem-Smith · Shamalama</title>
+<meta name="description" content="Meet Vanessa Latchem-Smith, founder of Shamalama, a female-led development studio bringing real-world software to pre-funding entrepreneurs at low cost." />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .about-hero{ padding:70px 0 40px; }
+  .about-grid{ display:grid; grid-template-columns:1fr 420px; gap:56px; align-items:center; }
+  @media(max-width:880px){ .about-grid{ grid-template-columns:1fr; gap:34px; } }
+  .about-grid .photo-wrap{ border:3px solid var(--ink); border-radius:26px; overflow:hidden; box-shadow:var(--shadow-lg); background:var(--coral); }
+  .quote-block{ background:var(--ink); color:var(--paper); border:3px solid var(--ink); border-radius:28px; padding:56px 52px; box-shadow:var(--shadow-lg); }
+  .quote-block .q{ font-family:var(--font-disp); font-weight:700; font-size:clamp(26px,3.6vw,44px); line-height:1.1; letter-spacing:-0.02em; }
+  .quote-block .q em{ font-style:normal; color:var(--yellow); }
+  .quote-block .by{ margin-top:26px; font-family:var(--font-mono); font-size:13px; color:oklch(0.78 0.02 280); }
+  .bio-cols{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  @media(max-width:760px){ .bio-cols{ grid-template-columns:1fr; gap:24px; } }
+  .bio-cols p{ font-size:17px; font-weight:500; }
+  .bio-cols p + p{ margin-top:18px; }
+  .vals{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  @media(max-width:760px){ .vals{ grid-template-columns:1fr; } }
+  .val{ border:3px solid var(--ink); border-radius:20px; padding:30px 28px; box-shadow:var(--shadow); }
+  .val:nth-child(1){ background:var(--mint); } .val:nth-child(2){ background:var(--yellow); }
+  .val:nth-child(3){ background:var(--coral); } .val:nth-child(4){ background:var(--blue); color:var(--paper); }
+  .val .vn{ font-family:var(--font-mono); font-size:13px; }
+  .val h4{ font-weight:800; font-size:24px; margin:12px 0 8px; }
+  .val p{ font-size:15px; font-weight:500; }
+  .timeline{ border-left:3px solid var(--ink); margin-left:8px; padding-left:34px; display:flex; flex-direction:column; gap:34px; }
+  .tl-item{ position:relative; }
+  .tl-item::before{ content:""; position:absolute; left:-43px; top:4px; width:16px; height:16px; border-radius:50%; background:var(--coral); border:3px solid var(--ink); }
+  .tl-item .yr{ font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); }
+  .tl-item h4{ font-weight:800; font-size:22px; margin:6px 0 6px; }
+  .tl-item p{ font-size:15.5px; font-weight:500; max-width:56ch; }
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="ball"></span>Shamalama</a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span></button>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="about.html" class="active">About</a>
+      <a href="ideas.html">Ideas</a>
+      <a class="nav-cta" href="contact.html">Start a build</a>
+    </div>
+  </div>
+</nav>
+
+<header class="about-hero wrap">
+  <a class="back-link" href="index.html">← Back home</a>
+  <div class="about-grid mt-m">
+    <div class="rv in">
+      <h1 style="font-size:clamp(44px,7vw,96px);font-weight:800;line-height:0.92;margin-top:22px;">Meet<br /><span class="coral">Vanessa.</span></h1>
+      <p class="hero-sub">Engineer, marketer, and the reason Shamalama exists, building software that reaches the people who'd usually be priced out of it.</p>
+    </div>
+    <div class="photo-wrap rv">
+      <div class="img-ph" style="width:100%;height:480px;"><span class="ph-lbl">drop · Vanessa portrait</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="block tight wrap">
+  <div class="quote-block rv">
+    <div class="q">"The work is the passion, the challenge, the drive, <em>real-world solutions</em> for the thinkers, without blowing the budget on a prototype."</div>
+    <div class="by">, Vanessa Latchem-Smith, Founder &amp; Lead Engineer</div>
+  </div>
+</section>
+
+<section class="block tight wrap">
+  <div class="sec-head rv">
+    <h2 class="sec-title mt-m">A builder who refuses to <em class="hl">gate-keep</em> good software.</h2>
+  </div>
+  <div class="bio-cols rv">
+    <div>
+      <p>Vanessa's background spans both <b>software engineering and marketing</b>, a rare pairing that means she can build the thing <em>and</em> understand why anyone would want it. Over the years she's sharpened those skills against an ever-changing market, staying close to the tools and trends that actually move.</p>
+      <p>That dual fluency became the founding idea for Shamalama: most entrepreneurs with a genuinely good idea get stuck at the same wall, they need something real to show people, but a "proper" prototype quotes out at more than they have before they're funded.</p>
+    </div>
+    <div>
+      <p>So she built a studio for exactly that moment. Shamalama brings real-world solutions to entrepreneurs at the <b>pre-funding stage, at low cost</b>, helping elevate the thinkers in a tech-driven world without asking them to bet the budget on an unproven idea.</p>
+      <p>Every project is written and owned in-house. No outsourcing, no black boxes, just a small, female-led studio that treats a £0-revenue founder with the same care as an enterprise client.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block tight wrap">
+  <div class="sec-head rv"></div>
+  <div class="vals rv">
+    <div class="val"><div class="vn mono">// 01</div><h4>In-house &amp; honest</h4><p>Female-led and written line-by-line in-house. You always know who built it and why.</p></div>
+    <div class="val"><div class="vn mono">// 02</div><h4>Every budget welcome</h4><p>No project too small, no idea too early. We start the conversation before the funding arrives.</p></div>
+    <div class="val"><div class="vn mono">// 03</div><h4>Speed over theatre</h4><p>A prototype you can hold in days, not a deck about a deck. Momentum is the whole point.</p></div>
+    <div class="val"><div class="vn mono">// 04</div><h4>Built with care</h4><p>From accessibility to enterprise AI, the craft is the same. The work is the passion.</p></div>
+  </div>
+</section>
+
+<section class="block tight wrap">
+  <div class="sec-head rv">
+    <h2 class="sec-title mt-m">How Shamalama got here.</h2>
+  </div>
+  <div class="timeline rv">
+    <div class="tl-item">
+      <div class="yr mono">Foundations</div>
+      <h4>Engineering &amp; marketing</h4>
+      <p>Years spent learning to build software and to sell it, two halves of the same skill, kept sharp against a market that never sits still.</p>
+    </div>
+    <div class="tl-item">
+      <div class="yr mono">The first build · with love</div>
+      <h4>Can Eat, Will Eat</h4>
+      <p>A gentle iOS app built for Vanessa's daughter, who has sensory needs around food. The proof that a heartfelt idea can ship fast, and the test that set the studio's protocols. <a href="work-can-eat-will-eat.html" style="border-bottom:3px solid var(--coral);">Read the story →</a></p>
+    </div>
+    <div class="tl-item">
+      <div class="yr mono">Now · deployed</div>
+      <h4>Crossways &amp; Sysqo</h4>
+      <p>A native residents' app for the Crossways estate, and a production website for enterprise-AI company Sysqo, with more in the pipeline.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap rv">
+    <h2>Work with <em>Vanessa</em>.</h2>
+    <p>Tell her about your idea, she'll tell you the fastest, most affordable way to make it real.</p>
+    <div class="hero-cta">
+      <a class="btn btn-paper" href="contact.html">Get in touch</a>
+      <a class="btn btn-ink" href="ideas.html">Got an idea? →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="ball"></span>Shamalama</a>
+        <p class="foot-blurb">Female-led development studio. Front-end solutions and native apps for clients of every budget, written in-house in Cardiff, Wales.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Work</h5>
+        <a href="work-crossways.html">Crossways</a>
+        <a href="work-sysqo.html">Sysqo</a>
+        <a href="work-can-eat-will-eat.html">Can Eat, Will Eat</a>
+      </div>
+      <div class="foot-col">
+        <h5>Studio</h5>
+        <a href="about.html">About Vanessa</a>
+        <a href="ideas.html">Got an idea?</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span class="mono">© 2026 Shamalama · Female-led · Every budget</span>
+      <span class="mono">Cardiff, Wales</span>
+    </div>
+  </div>
+</footer><script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Can Eat, Will Eat, where Shamalama began · Shamalama</title>
+<meta name="description" content="Can Eat, Will Eat: a gentle iOS app built by Shamalama's founder for her daughter, who has sensory needs around food. The heartfelt first build that started the studio." />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .proj-hero{ padding:64px 0 0; }
+  .cewe-head{ display:grid; grid-template-columns:1fr 300px; gap:54px; align-items:center; }
+  @media(max-width:860px){ .cewe-head{ grid-template-columns:1fr; gap:34px; } }
+  .proj-title{ font-size:clamp(44px,7vw,92px); font-weight:800; line-height:0.9; margin-top:20px; }
+  .proj-tag{ font-size:clamp(18px,2.2vw,23px); font-weight:500; max-width:46ch; margin-top:20px; }
+  .appstore{ background:var(--ink); color:var(--paper); border:var(--bw) solid var(--ink); box-shadow:var(--shadow); font-weight:700; padding:14px 24px; border-radius:999px; display:inline-flex; gap:10px; align-items:center; transition:transform .16s, box-shadow .16s; }
+  .appstore:hover{ transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--ink); }
+  .story-band{ background:var(--yellow); border-block:3px solid var(--ink); }
+  .story-band .q{ font-family:var(--font-disp); font-weight:700; font-size:clamp(26px,4vw,46px); line-height:1.12; letter-spacing:-0.02em; max-width:20ch; }
+  .story-band .q .heart{ color:var(--coral); }
+  .care-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media(max-width:760px){ .care-grid{ grid-template-columns:1fr; } }
+  .ccard{ background:var(--paper); border:3px solid var(--ink); border-radius:20px; padding:28px 26px; box-shadow:var(--shadow); }
+  .ccard .tagdot{ width:30px; height:30px; border-radius:50%; border:2.5px solid var(--ink); display:inline-block; }
+  .ccard h4{ font-weight:800; font-size:20px; margin:14px 0 8px; }
+  .ccard p{ font-size:15px; font-weight:500; }
+  .gallery{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
+  .note{ background:var(--mint); border:3px solid var(--ink); border-radius:22px; padding:40px 40px; box-shadow:var(--shadow); }
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="ball"></span>Shamalama</a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span></button>
+    <div class="nav-links">
+      <a href="index.html#work" class="active">Work</a>
+      <a href="about.html">About</a>
+      <a href="ideas.html">Ideas</a>
+      <a class="nav-cta" href="contact.html">Start a build</a>
+    </div>
+  </div>
+</nav>
+
+<header class="proj-hero wrap">
+  <a class="back-link" href="index.html#work">← All work</a>
+  <div class="cewe-head mt-m">
+    <div class="rv in">
+      <div class="chip-row"><span class="chip live">● LIVE ON APP STORE</span><span class="chip">iOS NATIVE</span><span class="chip yellow">WHERE IT BEGAN</span></div>
+      <h1 class="proj-title">Can Eat,<br />Will Eat</h1>
+      <p class="proj-tag">The first thing Shamalama ever built wasn't for a client. It was for family, and it's still helping, every day.</p>
+      <a class="appstore mt-m" href="https://apps.apple.com/gb/app/can-eat-will-eat/id6762655966" target="_blank" rel="noopener">Download on the App Store ↗</a>
+    </div>
+    <div class="rv" style="display:flex;justify-content:center;">
+      <div class="phone" style="width:230px;"><div class="notch"></div><div class="img-ph" style="width:100%;height:498px;"><span class="ph-lbl">drop · Can Eat, Will Eat</span></div></div>
+    </div>
+  </div>
+</header>
+
+<section class="block story-band">
+  <div class="wrap-narrow">
+    <div class="rv">
+      <p class="q">Built for Vanessa's daughter, who has sensory needs around food. <span class="heart">♥</span></p>
+      <p style="font-size:17.5px;font-weight:500;margin-top:26px;max-width:60ch;">For a lot of people, "what shall I eat?" is a passing thought. For someone with sensory needs around food, it can be one of the hardest, most loaded questions of the day. Can Eat, Will Eat was made to take some of that weight away, a calm, private space that turns an overwhelming decision into a gentle, manageable one.</p>
+      <p style="font-size:17.5px;font-weight:500;margin-top:18px;max-width:60ch;">It started as a personal act of love, and it quietly became something bigger: proof that a heartfelt idea, built with care, can reach the App Store, and stay there, helping.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block wrap">
+  <div class="sec-head rv"><h2 class="sec-title mt-m">Gentle by design.</h2></div>
+  <div class="care-grid rv">
+    <div class="ccard"><span class="tagdot" style="background:var(--coral);"></span><h4>No pressure</h4><p>A calm, judgement-free way to find foods that feel safe and right, at the person's own pace.</p></div>
+    <div class="ccard"><span class="tagdot" style="background:var(--blue);"></span><h4>Built around real needs</h4><p>Shaped by a real person's sensory needs, not a generic template, accessibility came first, not last.</p></div>
+    <div class="ccard"><span class="tagdot" style="background:var(--grape);"></span><h4>Everyday relief</h4><p>One small app that makes one big daily question that bit easier to answer. That was always the whole point.</p></div>
+  </div>
+</section>
+
+<section class="block tight wrap">
+  <div class="gallery rv">
+    <div class="phone" style="width:200px;"><div class="notch"></div><div class="img-ph" style="width:100%;height:434px;"><span class="ph-lbl">drop · screen 1</span></div></div>
+    <div class="phone" style="width:200px;margin-top:30px;"><div class="notch"></div><div class="img-ph" style="width:100%;height:434px;"><span class="ph-lbl">drop · screen 2</span></div></div>
+    <div class="phone" style="width:200px;"><div class="notch"></div><div class="img-ph" style="width:100%;height:434px;"><span class="ph-lbl">drop · screen 3</span></div></div>
+  </div>
+</section>
+
+<section class="block tight wrap">
+  <div class="note rv">
+    <h3 style="font-size:clamp(24px,3.2vw,34px);font-weight:800;margin-top:16px;max-width:24ch;">Our first build set the studio's protocols.</h3>
+    <p style="font-size:16.5px;font-weight:500;margin-top:14px;max-width:62ch;">Can Eat, Will Eat was the test bed for how Shamalama works now, accessibility-first thinking, native craft, and shipping something real and useful quickly. Every client project since has carried a little of its DNA.</p>
+  </div>
+</section>
+
+<section class="cta-band" style="background:var(--blue);color:var(--paper);">
+  <div class="wrap rv">
+    <h2 style="color:var(--paper);">Got an idea that <em style="background:var(--yellow);color:var(--ink);">means something</em>?</h2>
+    <p>The ones built with heart are our favourite kind. Tell us about yours.</p>
+    <div class="hero-cta"><a class="btn btn-paper" href="contact.html">Start an enquiry</a><a class="btn btn-ink" href="ideas.html">See how we work →</a></div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="ball"></span>Shamalama</a>
+        <p class="foot-blurb">Female-led development studio. Front-end solutions and native apps for clients of every budget, written in-house in Cardiff, Wales.</p>
+      </div>
+      <div class="foot-col"><h5>Work</h5><a href="work-crossways.html">Crossways</a><a href="work-sysqo.html">Sysqo</a><a href="work-can-eat-will-eat.html">Can Eat, Will Eat</a></div>
+      <div class="foot-col"><h5>Studio</h5><a href="about.html">About Vanessa</a><a href="ideas.html">Got an idea?</a><a href="contact.html">Contact</a></div>
+    </div>
+    <div class="foot-base"><span class="mono">© 2026 Shamalama · Female-led · Every budget</span><span class="mono">Cardiff, Wales</span></div>
+  </div>
+</footer><script src="site.js"></script>
+</body>
+</html>

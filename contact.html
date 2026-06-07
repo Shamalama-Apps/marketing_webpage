@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact, Shamalama</title>
+<meta name="description" content="Build your enquiry and send it straight to Vanessa, connect on LinkedIn, email, or book a call. Shamalama, female-led development studio." />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* futuristic ink hero */
+  .c-hero{ background:var(--ink); color:var(--paper); border-bottom:3px solid var(--ink); position:relative; overflow:hidden; }
+  .c-hero::after{ content:""; position:absolute; inset:0; pointer-events:none; opacity:0.5;
+    background-image:linear-gradient(oklch(1 0 0 /0.05) 1px,transparent 1px),linear-gradient(90deg,oklch(1 0 0 /0.05) 1px,transparent 1px);
+    background-size:48px 48px; -webkit-mask-image:radial-gradient(circle at 70% 20%,black,transparent 80%); mask-image:radial-gradient(circle at 70% 20%,black,transparent 80%); }
+  .c-hero .inner{ position:relative; z-index:1; padding:72px 0 70px; }
+  .c-hero h1{ font-weight:800; font-size:clamp(46px,8vw,108px); line-height:0.9; }
+  .c-hero h1 em{ font-style:normal; color:var(--coral); }
+  .c-hero .sub{ font-size:clamp(18px,2.1vw,22px); font-weight:500; max-width:50ch; margin-top:22px; color:oklch(0.86 0.01 280); }
+  .c-status{ font-family:var(--font-mono); font-size:13px; color:var(--mint); margin-top:26px; display:inline-flex; gap:10px; align-items:center; }
+  .c-status .cur{ display:inline-block; width:9px; height:16px; background:var(--mint); animation:blink 1.1s step-end infinite; }
+  @keyframes blink{ 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* builder */
+  .build-grid{ display:grid; grid-template-columns:1fr 0.95fr; gap:34px; align-items:start; }
+  @media(max-width:920px){ .build-grid{ grid-template-columns:1fr; } }
+  .builder .qbox{ margin-bottom:24px; }
+  .builder .q{ font-family:var(--font-disp); font-weight:700; font-size:18px; margin-bottom:13px; }
+  .builder .q .n{ font-family:var(--font-mono); font-size:12px; color:var(--coral-d); margin-right:8px; }
+
+  .preview{ position:sticky; top:96px; }
+  .pv-card{ background:var(--ink); color:var(--paper); border:3px solid var(--ink); border-radius:22px; box-shadow:var(--shadow-lg); overflow:hidden; }
+  .pv-top{ display:flex; align-items:center; gap:8px; padding:13px 16px; border-bottom:1px solid oklch(0.4 0.02 280); }
+  .pv-top .d{ width:11px; height:11px; border-radius:50%; }
+  .pv-top .t{ font-family:var(--font-mono); font-size:12px; color:oklch(0.7 0.02 280); margin-left:8px; }
+  .pv-body{ padding:24px 24px 26px; }
+  .pv-body .msg{ font-size:16px; line-height:1.6; font-weight:500; min-height:150px; }
+  .pv-body .msg b{ color:var(--yellow); font-weight:700; }
+  .pv-actions{ display:flex; flex-direction:column; gap:12px; padding:0 24px 24px; }
+  .pv-actions .btn{ justify-content:center; width:100%; }
+  .pv-foot{ border-top:1px solid oklch(0.4 0.02 280); padding:16px 24px; font-family:var(--font-mono); font-size:12px; color:oklch(0.72 0.02 280); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+
+  /* channels */
+  .chan-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media(max-width:820px){ .chan-grid{ grid-template-columns:1fr; } }
+  .chan{ border:3px solid var(--ink); border-radius:20px; padding:30px 28px; box-shadow:var(--shadow); }
+  .chan:nth-child(1){ background:var(--blue); color:var(--paper); }
+  .chan:nth-child(2){ background:var(--coral); }
+  .chan:nth-child(3){ background:var(--yellow); }
+  .chan .tag{ font-family:var(--font-mono); font-size:12px; }
+  .chan h4{ font-weight:800; font-size:22px; margin:12px 0 8px; }
+  .chan p{ font-size:15px; font-weight:500; }
+
+  /* toast */
+  .toast{ position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(140%); background:var(--ink); color:var(--paper); font-weight:600; padding:14px 22px; border-radius:999px; box-shadow:var(--shadow-lg); border:2.5px solid var(--mint); z-index:200; transition:transform .3s cubic-bezier(.2,1.2,.3,1); }
+  .toast.show{ transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="ball"></span>Shamalama</a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span></button>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="ideas.html">Ideas</a>
+      <a class="nav-cta" href="contact.html" class="active">Start a build</a>
+    </div>
+  </div>
+</nav>
+
+<header class="c-hero">
+  <div class="wrap inner">
+    <h1 class="mt-m">Send it<br />straight to <em>Vanessa.</em></h1>
+    <p class="sub">No contact-form black hole. Build your enquiry below and it goes directly to the founder, by LinkedIn, email, or a quick call. Your choice.</p>
+    <div class="c-status mono">enquiry_builder.exe, ready<span class="cur"></span></div>
+  </div>
+</header>
+
+<section class="block wrap">
+  <div class="build-grid">
+    <!-- left: builder -->
+    <div class="builder rv in">
+      <div class="mt-m"></div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">01</span>What are you after?</div>
+        <div class="seg" data-key="type" data-single>
+          <button class="opt-btn sel" data-val="a website">A website</button>
+          <button class="opt-btn" data-val="a native app">A native app</button>
+          <button class="opt-btn" data-val="a website + an app">Both</button>
+          <button class="opt-btn" data-val="something I'm still figuring out">Not sure yet</button>
+        </div>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">02</span>Where are you right now?</div>
+        <div class="seg" data-key="stage" data-single>
+          <button class="opt-btn" data-val="just an idea">Just an idea</button>
+          <button class="opt-btn sel" data-val="pre-funding">Pre-funding</button>
+          <button class="opt-btn" data-val="funded">Funded</button>
+          <button class="opt-btn" data-val="already trading">Trading</button>
+        </div>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">03</span>Budget comfort?</div>
+        <div class="seg" data-key="budget" data-single>
+          <button class="opt-btn sel" data-val="a shoestring">Shoestring</button>
+          <button class="opt-btn" data-val="a modest">Modest</button>
+          <button class="opt-btn" data-val="a flexible">Flexible</button>
+        </div>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">04</span>How soon?</div>
+        <div class="seg" data-key="timeline" data-single>
+          <button class="opt-btn sel" data-val="as soon as possible">ASAP</button>
+          <button class="opt-btn" data-val="in a few weeks">A few weeks</button>
+          <button class="opt-btn" data-val="with no real rush">No rush</button>
+        </div>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">05</span>The idea, in your words <span class="hint" style="font-weight:400;color:var(--ink-soft);">(optional)</span></div>
+        <textarea class="textarea" id="idea" placeholder="e.g. I want to sell my crochet patterns online…"></textarea>
+      </div>
+
+      <div class="qbox">
+        <div class="q"><span class="n mono">06</span>Your name <span class="hint" style="font-weight:400;color:var(--ink-soft);">(so we can say hi)</span></div>
+        <input class="input" id="name" placeholder="First name" />
+      </div>
+    </div>
+
+    <!-- right: live preview -->
+    <div class="preview rv">
+      <div class="pv-card">
+        <div class="pv-top">
+          <span class="d" style="background:var(--coral);"></span><span class="d" style="background:var(--yellow);"></span><span class="d" style="background:var(--mint);"></span>
+          <span class="t mono">your_enquiry.txt</span>
+        </div>
+        <div class="pv-body">
+          <div class="msg" id="msg"></div>
+        </div>
+        <div class="pv-actions">
+          <a class="btn btn-primary" id="liBtn" href="https://www.linkedin.com/in/vanessa-latchem-smith/" target="_blank" rel="noopener">Connect with Vanessa on LinkedIn →</a>
+          <a class="btn btn-blue" id="mailBtn" href="#">Email this enquiry</a>
+          <a class="btn btn-paper" id="callBtn" href="#" target="_blank" rel="noopener">Book a 20-min call</a>
+        </div>
+        <div class="pv-foot">
+          <span class="mono">✦ updates as you choose</span>
+          <span class="mono" id="charcount">0 chars</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block tight wrap">
+  <div class="sec-head rv"><h2 class="sec-title mt-m">However suits you.</h2></div>
+  <div class="chan-grid rv">
+    <div class="chan">
+      <div class="tag mono">// 01 · linkedin</div>
+      <h4>Connect &amp; send</h4>
+      <p>The button copies your enquiry to the clipboard and opens Vanessa's LinkedIn, paste it into your connection note and you're talking to the founder directly.</p>
+    </div>
+    <div class="chan">
+      <div class="tag mono">// 02 · email</div>
+      <h4>Straight to the inbox</h4>
+      <p>Prefers email? One tap drafts a tidy message, type, stage, budget and timeline already written, ready for you to hit send.</p>
+    </div>
+    <div class="chan">
+      <div class="tag mono">// 03 · a real call</div>
+      <h4>Just talk it out</h4>
+      <p>Sometimes a 20-minute chat beats any form. Grab a slot and we'll scope your idea together, free, no pressure.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap rv">
+    <h2>No idea is <em>too early</em>.</h2>
+    <p>Seriously. If you're not sure it's ready, that's usually the perfect time to talk.</p>
+    <div class="hero-cta"><a class="btn btn-paper" href="ideas.html">See how we work →</a></div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="ball"></span>Shamalama</a>
+        <p class="foot-blurb">Female-led development studio. Front-end solutions and native apps for clients of every budget, written in-house in Cardiff, Wales.</p>
+      </div>
+      <div class="foot-col"><h5>Work</h5><a href="work-crossways.html">Crossways</a><a href="work-sysqo.html">Sysqo</a><a href="work-can-eat-will-eat.html">Can Eat, Will Eat</a></div>
+      <div class="foot-col"><h5>Studio</h5><a href="about.html">About Vanessa</a><a href="ideas.html">Got an idea?</a><a href="contact.html">Contact</a></div>
+    </div>
+    <div class="foot-base"><span class="mono">© 2026 Shamalama · Female-led · Every budget</span><span class="mono">Cardiff, Wales</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Enquiry copied, paste it into your LinkedIn note ✦</div>
+
+<script src="site.js"></script>
+<script>
+  // ---- placeholders the user can swap later ----
+  var EMAIL = 'hello@shamalama.dev';
+  var CALL_URL = 'https://cal.com/shamalama/intro'; // swap for your real booking link
+
+  var state = { type: 'a website', stage: 'pre-funding', budget: 'a shoestring', timeline: 'as soon as possible' };
+
+  document.querySelectorAll('.seg[data-single]').forEach(function (seg) {
+    var key = seg.getAttribute('data-key');
+    seg.querySelectorAll('.opt-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        seg.querySelectorAll('.opt-btn').forEach(function (x) { x.classList.remove('sel'); });
+        b.classList.add('sel');
+        state[key] = b.getAttribute('data-val');
+        render();
+      });
+    });
+  });
+  document.getElementById('idea').addEventListener('input', render);
+  document.getElementById('name').addEventListener('input', render);
+
+  function composeHTML() {
+    var name = (document.getElementById('name').value || '').trim();
+    var idea = (document.getElementById('idea').value || '').trim();
+    var hi = 'Hi Vanessa,';
+    var line1 = ' I\'m looking for <b>' + state.type + '</b>.';
+    var line2 = idea ? ' In short: <b>' + escapeHTML(idea) + '</b>.' : '';
+    var line3 = ' I\'m at the <b>' + state.stage + '</b> stage, on <b>' + state.budget + '</b> budget, hoping to get going <b>' + state.timeline + '</b>.';
+    var line4 = ' Could we talk?';
+    var sign = name ? '<br><br>Thanks,<br>' + escapeHTML(name) : '';
+    return hi + line1 + line2 + line3 + line4 + sign;
+  }
+  function composeText() {
+    return composeHTML().replace(/<br>/g, '\n').replace(/<\/?b>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  }
+  function escapeHTML(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function render() {
+    document.getElementById('msg').innerHTML = composeHTML();
+    var t = composeText();
+    document.getElementById('charcount').textContent = t.length + ' chars';
+    document.getElementById('mailBtn').setAttribute('href',
+      'mailto:' + EMAIL + '?subject=' + encodeURIComponent('New enquiry, ' + state.type) + '&body=' + encodeURIComponent(t));
+    document.getElementById('callBtn').setAttribute('href', CALL_URL);
+  }
+
+  // LinkedIn: copy the message, then open the profile
+  document.getElementById('liBtn').addEventListener('click', function (e) {
+    var text = composeText();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      e.preventDefault();
+      navigator.clipboard.writeText(text).then(function () {
+        showToast();
+        setTimeout(function () { window.open('https://www.linkedin.com/in/vanessa-latchem-smith/', '_blank'); }, 650);
+      }).catch(function () { window.open('https://www.linkedin.com/in/vanessa-latchem-smith/', '_blank'); });
+    }
+  });
+
+  var toastTimer;
+  function showToast() {
+    var t = document.getElementById('toast');
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 3200);
+  }
+
+  render();
+</script>
+</body>
+</html>
