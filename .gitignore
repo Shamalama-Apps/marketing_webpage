@@ -1,0 +1,15 @@
+# Do not publish — confidential
+Invoices/
+Shamalama Invoice*.html
+invoice-*.pdf
+invoice-*.html
+
+# In-progress work — un-ignore intentionally when ready to publish
+logo-explorations/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
