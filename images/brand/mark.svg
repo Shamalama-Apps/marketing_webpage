@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Shamalama — brand mark (animated)
+  Coral "ding" bobs first; blue "dong" answers half a beat later.
+  2.6s loop. Hard offset shadows stay put — the balls lift off and return.
+  Designed for placement on paper-coloured backgrounds (nav, cards).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Static shadows: resting positions -->
+  <circle cx="74" cy="92" r="38" fill="#1F1E2C"/>
+  <circle cx="138" cy="118" r="22" fill="#1F1E2C"/>
+  <!-- "Ding" — coral, bobs first -->
+  <circle cx="70" cy="88" r="38" fill="#EF8161" stroke="#1F1E2C" stroke-width="4">
+    <animate attributeName="cy"
+             values="88; 80; 88; 88"
+             keyTimes="0; 0.2; 0.4; 1"
+             dur="2.6s" repeatCount="indefinite"
+             calcMode="spline"
+             keySplines="0.42 0 0.58 1; 0.42 0 0.58 1; 0 0 1 1"/>
+  </circle>
+  <!-- "Dong" — blue, answers half a beat later -->
+  <circle cx="134" cy="114" r="22" fill="#5871CC" stroke="#1F1E2C" stroke-width="4">
+    <animate attributeName="cy"
+             values="114; 114; 106; 114"
+             keyTimes="0; 0.55; 0.75; 1"
+             dur="2.6s" repeatCount="indefinite"
+             calcMode="spline"
+             keySplines="0 0 1 1; 0.42 0 0.58 1; 0.42 0 0.58 1"/>
+  </circle>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Shamalama — favicon
+  Simplified two-dot duet for tiny sizes. Static (favicons don't animate
+  reliably across browsers). No offset shadow at this scale — the colour
+  contrast carries it. Sized for a 32x32 viewBox so the dots have room.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- "Ding" — coral, top-left, bigger -->
+  <circle cx="12" cy="13" r="9" fill="#EF8161" stroke="#1F1E2C" stroke-width="1.5"/>
+  <!-- "Dong" — blue, bottom-right, smaller -->
+  <circle cx="23" cy="22" r="6" fill="#5871CC" stroke="#1F1E2C" stroke-width="1.5"/>
+</svg>

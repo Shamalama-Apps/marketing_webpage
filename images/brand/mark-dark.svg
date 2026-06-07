@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Shamalama — brand mark (animated, for dark backgrounds)
+  Same call-and-response bob, but with paper-coloured offset shadows
+  and strokes so the duet reads against the dark ink footer.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Paper-coloured offset shadows for dark backgrounds -->
+  <circle cx="74" cy="92" r="38" fill="#F8F4E9" opacity="0.18"/>
+  <circle cx="138" cy="118" r="22" fill="#F8F4E9" opacity="0.18"/>
+  <!-- "Ding" — coral, bobs first -->
+  <circle cx="70" cy="88" r="38" fill="#EF8161" stroke="#F8F4E9" stroke-width="3">
+    <animate attributeName="cy"
+             values="88; 80; 88; 88"
+             keyTimes="0; 0.2; 0.4; 1"
+             dur="2.6s" repeatCount="indefinite"
+             calcMode="spline"
+             keySplines="0.42 0 0.58 1; 0.42 0 0.58 1; 0 0 1 1"/>
+  </circle>
+  <!-- "Dong" — blue, answers half a beat later -->
+  <circle cx="134" cy="114" r="22" fill="#5871CC" stroke="#F8F4E9" stroke-width="3">
+    <animate attributeName="cy"
+             values="114; 114; 106; 114"
+             keyTimes="0; 0.55; 0.75; 1"
+             dur="2.6s" repeatCount="indefinite"
+             calcMode="spline"
+             keySplines="0 0 1 1; 0.42 0 0.58 1; 0.42 0 0.58 1"/>
+  </circle>
+</svg>
