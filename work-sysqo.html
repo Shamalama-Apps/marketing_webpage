@@ -20,6 +20,7 @@
   .meta-list .m .v{ font-family:var(--font-disp); font-weight:700; font-size:17px; }
   .hero-browser{ margin-top:48px; }
   .live-preview{ position:relative; width:100%; height:520px; overflow:hidden; background:var(--paper-2); }
+  .live-preview.small{ height:300px; }
   .live-preview iframe{ position:absolute; top:0; left:0; width:1440px; border:0; transform-origin:0 0; pointer-events:none; background:#fff; }
   .live-overlay{ position:absolute; top:14px; right:14px; z-index:2; display:inline-flex; align-items:center; gap:8px;
     font-family:var(--font-mono); font-size:12px; font-weight:500; padding:7px 13px; border:2px solid var(--ink); border-radius:999px;
@@ -106,7 +107,12 @@
 <section class="block wrap">
   <div class="sec-head rv"><h2 class="sec-title mt-m">Selected screens.</h2></div>
   <div class="gallery rv">
-    <div class="browser"><div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">sysqo.com</span></div><div class="img-ph" style="width:100%;height:300px;"><span class="ph-lbl">drop · screen 1</span></div></div>
+    <div class="browser"><div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">sysqo.com/#what-we-do</span></div>
+      <div class="live-preview small">
+        <iframe src="https://sysqo.com/index.html#what-we-do" title="Live preview of sysqo.com — What we do" loading="lazy" referrerpolicy="no-referrer"></iframe>
+        <a class="live-overlay" href="https://sysqo.com/index.html#what-we-do" target="_blank" rel="noopener"><span class="live-dot"></span>LIVE ↗</a>
+      </div>
+    </div>
     <div class="browser"><div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">sysqo.com/solutions</span></div><div class="img-ph" style="width:100%;height:300px;"><span class="ph-lbl">drop · screen 2</span></div></div>
   </div>
 </section>
@@ -153,16 +159,19 @@
   </div>
 </footer><script src="site.js"></script>
 <script>
-  // Scale the live sysqo.com iframe to fit its container — keeps the showcase reading as a single screenshot-like preview.
+  // Scale every live preview on the page to fit its container width — keeps the embed reading as a screenshot-like showcase.
   (function () {
-    var box = document.getElementById('sysqoLive');
-    if (!box) return;
-    var frame = box.querySelector('iframe');
+    var boxes = document.querySelectorAll('.live-preview');
+    if (!boxes.length) return;
     var NATIVE = 1440;
     function fit() {
-      var s = box.clientWidth / NATIVE;
-      frame.style.transform = 'scale(' + s + ')';
-      frame.style.height = (box.clientHeight / s) + 'px';
+      boxes.forEach(function (box) {
+        var frame = box.querySelector('iframe');
+        if (!frame) return;
+        var s = box.clientWidth / NATIVE;
+        frame.style.transform = 'scale(' + s + ')';
+        frame.style.height = (box.clientHeight / s) + 'px';
+      });
     }
     fit();
     var t;
