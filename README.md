@@ -49,7 +49,7 @@ GitHub Pages redeploys within a minute.
 - **Real images.** All image slots are placeholder divs styled to match the prototype. Swap them for `<img>` tags as assets land in `images/`.
 - **Booking link.** `contact.html` line 209 has `CALL_URL = 'https://cal.com/shamalama/intro'` — replace with the real booking URL.
 - **Custom domain.** A CNAME was added then removed on the repo earlier. To wire `shamalama.co.uk` (or a subdomain), set it in repo Settings → Pages → Custom domain, and add the matching DNS records at your registrar.
-- **Email.** Contact form composes to `hello@shamalama.co.uk`.
+- **Email.** Contact form composes to `info@shamalama.co.uk`.
 
 ## Design provenance
 
