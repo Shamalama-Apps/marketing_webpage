@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="shortcut icon" href="favicon.ico">
 <title>Contact, Shamalama</title>
-<meta name="description" content="Build your enquiry and send it straight to Vanessa, connect on LinkedIn, email, or book a call. Shamalama, female-led development studio." />
+<meta name="description" content="Build your enquiry and send it straight to Vanessa, by WhatsApp, email, or a 20-minute call. Shamalama, female-led development studio." />
 <link rel="stylesheet" href="styles.css" />
 <style>
   /* futuristic ink hero */
@@ -54,10 +54,6 @@
   .chan .tag{ font-family:var(--font-mono); font-size:12px; }
   .chan h4{ font-weight:800; font-size:22px; margin:12px 0 8px; }
   .chan p{ font-size:15px; font-weight:500; }
-
-  /* toast */
-  .toast{ position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(140%); background:var(--ink); color:var(--paper); font-weight:600; padding:14px 22px; border-radius:999px; box-shadow:var(--shadow-lg); border:2.5px solid var(--mint); z-index:200; transition:transform .3s cubic-bezier(.2,1.2,.3,1); }
-  .toast.show{ transform:translateX(-50%) translateY(0); }
 
   /* inline booking */
   .book-card{ background:var(--paper); border:3px solid var(--ink); border-radius:28px; padding:48px 44px; box-shadow:var(--shadow-lg); }
@@ -105,7 +101,7 @@
 <header class="c-hero">
   <div class="wrap inner">
     <h1 class="mt-m">Send it<br />straight to <em>Vanessa.</em></h1>
-    <p class="sub">No contact-form black hole. Build your enquiry below and it goes directly to the founder, by LinkedIn, email, or a quick call. Your choice.</p>
+    <p class="sub">No contact-form black hole. Build your enquiry below and it goes directly to the founder, via WhatsApp, email, or a 20-minute call. Your choice.</p>
     <div class="c-status mono">enquiry_builder.exe, ready<span class="cur"></span></div>
   </div>
 </header>
@@ -176,7 +172,7 @@
           <div class="msg" id="msg"></div>
         </div>
         <div class="pv-actions">
-          <a class="btn btn-primary" id="liBtn" href="https://www.linkedin.com/in/vanessa-latchem-smith/" target="_blank" rel="noopener">Connect with Vanessa on LinkedIn →</a>
+          <a class="btn btn-primary" id="waBtn" href="#" target="_blank" rel="noopener">Send via WhatsApp →</a>
           <a class="btn btn-blue" id="mailBtn" href="#">Email this enquiry</a>
           <a class="btn btn-paper" id="callBtn" href="#book">Book a 20-min call ↓</a>
         </div>
@@ -193,9 +189,9 @@
   <div class="sec-head rv"><h2 class="sec-title mt-m">However suits you.</h2></div>
   <div class="chan-grid rv">
     <div class="chan">
-      <div class="tag mono">// 01 · linkedin</div>
-      <h4>Connect &amp; send</h4>
-      <p>The button copies your enquiry to the clipboard and opens Vanessa's LinkedIn, paste it into your connection note and you're talking to the founder directly.</p>
+      <div class="tag mono">// 01 · whatsapp</div>
+      <h4>One tap away</h4>
+      <p>One tap opens WhatsApp with your enquiry already typed, ready to send. Vanessa's phone, Vanessa's reply. The shortest path to a real conversation.</p>
     </div>
     <div class="chan">
       <div class="tag mono">// 02 · email</div>
@@ -273,11 +269,10 @@
   </div>
 </footer>
 
-<div class="toast" id="toast">Enquiry copied, paste it into your LinkedIn note ✦</div>
-
 <script src="site.js"></script>
 <script>
   var EMAIL = 'info@shamalama.co.uk';
+  var WHATSAPP = '447947162655'; // international format, no leading +
 
   var state = { type: 'a website', stage: 'pre-funding', budget: 'a shoestring', timeline: 'as soon as possible' };
 
@@ -317,26 +312,8 @@
     document.getElementById('charcount').textContent = t.length + ' chars';
     document.getElementById('mailBtn').setAttribute('href',
       'mailto:' + EMAIL + '?subject=' + encodeURIComponent('New enquiry, ' + state.type) + '&body=' + encodeURIComponent(t));
-  }
-
-  // LinkedIn: copy the message, then open the profile
-  document.getElementById('liBtn').addEventListener('click', function (e) {
-    var text = composeText();
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      e.preventDefault();
-      navigator.clipboard.writeText(text).then(function () {
-        showToast();
-        setTimeout(function () { window.open('https://www.linkedin.com/in/vanessa-latchem-smith/', '_blank'); }, 650);
-      }).catch(function () { window.open('https://www.linkedin.com/in/vanessa-latchem-smith/', '_blank'); });
-    }
-  });
-
-  var toastTimer;
-  function showToast() {
-    var t = document.getElementById('toast');
-    t.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 3200);
+    document.getElementById('waBtn').setAttribute('href',
+      'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(t));
   }
 
   render();
