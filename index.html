@@ -55,6 +55,9 @@
   .ap-card p{ font-size:14.5px; font-weight:500; }
   .budget-note{ margin-top:36px; font-family:var(--font-disp); font-weight:700; font-size:clamp(19px,2.5vw,28px); letter-spacing:-0.02em; }
   .budget-note em{ font-style:normal; color:var(--yellow); }
+  /* live sysqo preview inside the home tile */
+  .live-preview{ position:relative; width:100%; overflow:hidden; background:var(--paper-2); }
+  .live-preview iframe{ position:absolute; top:0; left:0; width:1440px; border:0; transform-origin:0 0; pointer-events:none; background:#fff; }
 </style>
 </head>
 <body>
@@ -126,8 +129,8 @@
     <div class="fr-media blue">
       <div class="browser panel-browser">
         <div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">sysqo.com</span></div>
-        <div class="screen img-ph" style="width:100%;height:262px;">
-          <span class="ph-lbl">drop · Sysqo website</span>
+        <div class="live-preview" style="height:262px;">
+          <iframe src="https://sysqo.com/index.html" title="Live preview of sysqo.com" loading="lazy" referrerpolicy="no-referrer" aria-hidden="true" tabindex="-1"></iframe>
         </div>
       </div>
     </div>
@@ -241,5 +244,25 @@
 </footer>
 
 <script src="site.js"></script>
+<script>
+  // Scale each .live-preview iframe to fit its container width.
+  (function () {
+    var boxes = document.querySelectorAll('.live-preview');
+    if (!boxes.length) return;
+    var NATIVE = 1440;
+    function fit() {
+      boxes.forEach(function (box) {
+        var frame = box.querySelector('iframe');
+        if (!frame) return;
+        var s = box.clientWidth / NATIVE;
+        frame.style.transform = 'scale(' + s + ')';
+        frame.style.height = (box.clientHeight / s) + 'px';
+      });
+    }
+    fit();
+    var t;
+    window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 120); });
+  })();
+</script>
 </body>
 </html>
