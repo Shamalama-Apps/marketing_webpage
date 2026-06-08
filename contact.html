@@ -60,12 +60,29 @@
   .toast.show{ transform:translateX(-50%) translateY(0); }
 
   /* inline booking */
-  .book-card{ background:var(--paper); border:3px solid var(--ink); border-radius:28px; padding:48px 44px; box-shadow:var(--shadow-lg); display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
-  @media(max-width:880px){ .book-card{ grid-template-columns:1fr; padding:36px 24px; gap:28px; } }
+  .book-card{ background:var(--paper); border:3px solid var(--ink); border-radius:28px; padding:48px 44px; box-shadow:var(--shadow-lg); }
+  @media(max-width:680px){ .book-card{ padding:32px 22px; } }
   .book-head .tag{ font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); margin-bottom:14px; display:inline-block; }
   .book-head h2{ font-size:clamp(28px,4vw,46px); line-height:0.98; }
-  .book-frame{ background:var(--paper); border:3px solid var(--ink); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); min-height:560px; }
-  .book-frame iframe{ display:block; width:100%; min-height:560px; border:0; background:var(--paper); }
+  .book-head p{ margin-top:14px; }
+  .slot-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:32px; }
+  @media(max-width:720px){ .slot-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:420px){ .slot-grid{ grid-template-columns:1fr; } }
+  .slot-tile{ background:var(--paper); border:3px solid var(--ink); border-radius:18px; padding:16px 14px; cursor:pointer; transition:transform .14s, box-shadow .14s, background .14s; text-align:center; font-family:var(--font-disp); user-select:none; }
+  .slot-tile:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--ink); }
+  .slot-tile.sel{ background:var(--coral); box-shadow:5px 5px 0 var(--ink); }
+  .slot-tile .day{ font-family:var(--font-mono); font-size:12px; font-weight:500; color:var(--ink-soft); }
+  .slot-tile.sel .day{ color:var(--ink); }
+  .slot-tile .time{ font-weight:800; font-size:24px; margin-top:6px; letter-spacing:-0.02em; }
+  .book-form{ margin-top:34px; padding-top:30px; border-top:2px solid var(--ink); display:grid; grid-template-columns:1fr 1fr; gap:18px 22px; }
+  @media(max-width:680px){ .book-form{ grid-template-columns:1fr; } }
+  .book-form .full{ grid-column:1/-1; }
+  .book-submit{ display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; margin-top:22px; }
+  .book-submit .note{ font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); }
+  .book-status{ margin-top:16px; padding:14px 18px; border-radius:12px; border:2px solid var(--ink); font-family:var(--font-mono); font-size:14px; display:none; }
+  .book-status.show{ display:block; }
+  .book-status.ok{ background:var(--mint); }
+  .book-status.err{ background:var(--coral); }
 </style>
 </head>
 <body>
@@ -197,11 +214,30 @@
     <div class="book-head">
       <div class="tag mono">// pick a slot</div>
       <h2 class="sec-title">Or pick a time, <em class="hl">right here</em>.</h2>
-      <p class="lead mt-s">20 minutes, no pressure. Choose a slot and you'll get a calendar invite straight away.</p>
+      <p class="lead">20 minutes, no pressure. Choose a slot, drop in your details, and you'll get a calendar invite by email.</p>
     </div>
-    <div class="book-frame">
-      <iframe src="https://calendar.zoho.eu/eventreqForm/zz080112301576ed6575a3745d2107518582cc039705b8a55590e212770f8834e5ba37ca4669c4071437165ea9f4a1077205371909?theme=0&l=en&tz=Europe%2FLondon" title="Book a 20-minute call with Vanessa" frameborder="0" scrolling="auto" marginwidth="0" marginheight="0" loading="lazy"></iframe>
-    </div>
+
+    <div class="slot-grid" id="slotGrid" role="radiogroup" aria-label="Available time slots"></div>
+
+    <form class="book-form" id="bookForm" novalidate>
+      <div class="field">
+        <label for="bookName">Your name</label>
+        <input class="input" type="text" id="bookName" name="name" required autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="bookEmail">Email <span class="hint">for the calendar invite</span></label>
+        <input class="input" type="email" id="bookEmail" name="email" required autocomplete="email" />
+      </div>
+      <div class="field full">
+        <label for="bookNotes">Anything to mention? <span class="hint">optional</span></label>
+        <textarea class="textarea" id="bookNotes" name="notes" rows="3" placeholder="A line about your idea, what you'd like to cover, etc."></textarea>
+      </div>
+      <div class="book-submit full">
+        <span class="note">All times shown in Europe/London. ✦</span>
+        <button class="btn btn-primary" type="submit" id="bookSubmit">Confirm booking →</button>
+      </div>
+      <div class="book-status full" id="bookStatus" role="status" aria-live="polite"></div>
+    </form>
   </div>
 </section>
 
@@ -294,6 +330,87 @@
   }
 
   render();
+
+  // ---- Inline booking: hard-coded slots + Make.com webhook ----
+  // TODO Vanessa: paste your Make webhook URL here once set up.
+  var BOOKING_WEBHOOK = 'https://hook.eu2.make.com/REPLACE_ME';
+
+  // Edit this list to update availability. Each slot needs day, time, and iso (ISO 8601 with timezone).
+  var SLOTS = [
+    { day: 'Tue 9 Jun',  time: '10:00', iso: '2026-06-09T10:00:00+01:00' },
+    { day: 'Tue 9 Jun',  time: '14:00', iso: '2026-06-09T14:00:00+01:00' },
+    { day: 'Wed 10 Jun', time: '11:00', iso: '2026-06-10T11:00:00+01:00' },
+    { day: 'Thu 11 Jun', time: '15:30', iso: '2026-06-11T15:30:00+01:00' },
+    { day: 'Tue 16 Jun', time: '10:00', iso: '2026-06-16T10:00:00+01:00' },
+    { day: 'Thu 18 Jun', time: '14:00', iso: '2026-06-18T14:00:00+01:00' }
+  ];
+
+  var pickedSlot = null;
+  var slotGrid = document.getElementById('slotGrid');
+  SLOTS.forEach(function (s, i) {
+    var t = document.createElement('button');
+    t.type = 'button';
+    t.className = 'slot-tile';
+    t.setAttribute('role', 'radio');
+    t.setAttribute('aria-checked', 'false');
+    t.dataset.iso = s.iso;
+    t.innerHTML = '<div class="day">' + s.day + '</div><div class="time">' + s.time + '</div>';
+    t.addEventListener('click', function () {
+      slotGrid.querySelectorAll('.slot-tile').forEach(function (x) { x.classList.remove('sel'); x.setAttribute('aria-checked', 'false'); });
+      t.classList.add('sel');
+      t.setAttribute('aria-checked', 'true');
+      pickedSlot = s;
+      setStatus('');
+    });
+    slotGrid.appendChild(t);
+  });
+
+  function setStatus(msg, kind) {
+    var el = document.getElementById('bookStatus');
+    el.textContent = msg;
+    el.className = 'book-status full' + (msg ? ' show ' + (kind || '') : '');
+  }
+
+  document.getElementById('bookForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('bookName').value.trim();
+    var email = document.getElementById('bookEmail').value.trim();
+    var notes = document.getElementById('bookNotes').value.trim();
+    if (!pickedSlot) return setStatus('Pick a slot above first.', 'err');
+    if (!name) return setStatus('Add your name so we know who we\'re talking to.', 'err');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setStatus('That email doesn\'t look right.', 'err');
+
+    var btn = document.getElementById('bookSubmit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    setStatus('');
+
+    fetch(BOOKING_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        notes: notes,
+        slot_day: pickedSlot.day,
+        slot_time: pickedSlot.time,
+        slot_iso: pickedSlot.iso,
+        timezone: 'Europe/London',
+        source: 'shamalama.co.uk/contact'
+      })
+    }).then(function (r) {
+      if (!r.ok) throw new Error('webhook returned ' + r.status);
+      setStatus('Booked! ' + pickedSlot.day + ' at ' + pickedSlot.time + ' — check ' + email + ' for the invite.', 'ok');
+      document.getElementById('bookForm').reset();
+      slotGrid.querySelectorAll('.slot-tile').forEach(function (x) { x.classList.remove('sel'); });
+      pickedSlot = null;
+    }).catch(function () {
+      setStatus('Something went wrong sending that — please email ' + EMAIL + ' and we\'ll sort a time.', 'err');
+    }).finally(function () {
+      btn.disabled = false;
+      btn.textContent = 'Confirm booking →';
+    });
+  });
 </script>
 </body>
 </html>
