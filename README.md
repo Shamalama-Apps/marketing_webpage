@@ -2,9 +2,9 @@
 
 Female-led development studio showcase site. Static HTML/CSS/JS built from a Bold Pop design system.
 
-- **Live (GitHub Pages):** https://shamalama-apps.github.io/marketing_webpage/
+- **Live:** https://shamalama.co.uk (custom domain; `shamalama-apps.github.io/marketing_webpage` 301-redirects there)
 - **Repo:** https://github.com/Shamalama-Apps/marketing_webpage
-- **Branch:** `main` → root deploy
+- **Branch:** `main` → root deploy. Pages CDN cache is 10 min — hard-refresh after pushes.
 
 ## Pages
 
@@ -37,18 +37,25 @@ Or just double-click `index.html`.
 ## Ship a change
 
 ```bash
-git add -A
+git add path/to/file1 path/to/file2     # never use git add -A or .
 git commit -m "describe the change"
 git push
 ```
 
-GitHub Pages redeploys within a minute.
+GitHub Pages redeploys within a minute. `.gitignore` keeps `Invoices/`, drafts (`**/_drafts/`), and `logo-explorations/` out of the public repo.
+
+## Booking flow (contact page)
+
+The "pick a time" widget on `contact.html` posts to a **Make.com** webhook which creates a **Zoho Calendar** event and sends a notification email.
+
+- Webhook URL: hard-coded in `contact.html` as `BOOKING_WEBHOOK` (Make EU region, `hook.eu1.make.com`)
+- Available slots: generated dynamically — next 5 upcoming weekdays × 6 spaced times within 08:30–18:00. Edit the `TIMES` and `DAY_COUNT` constants in `contact.html` to adjust.
+- Payload is sent as `application/x-www-form-urlencoded` (URLSearchParams body). This is critical: `application/json` triggers a CORS preflight Make doesn't answer, and `text/plain` arrives at Make as a string blob the Zoho connector can't read. Form-encoding is the sweet spot — no preflight, Make parses into proper bundle fields.
+- Make Zoho Calendar mappings must be inserted as **pills** from the bundle picker (not typed as text and not wrapped in `parseDate()` — both have failed in past). Start = `1. slot_zoho_start`, End = `1. slot_zoho_end`.
 
 ## Known TODOs
 
-- **Real images.** All image slots are placeholder divs styled to match the prototype. Swap them for `<img>` tags as assets land in `images/`.
-- **Booking link.** `contact.html` line 209 has `CALL_URL = 'https://cal.com/shamalama/intro'` — replace with the real booking URL.
-- **Custom domain.** A CNAME was added then removed on the repo earlier. To wire `shamalama.co.uk` (or a subdomain), set it in repo Settings → Pages → Custom domain, and add the matching DNS records at your registrar.
+- **Real images.** Most placeholder divs have been replaced with real `<img>` tags (founder portraits, Crossways and Can Eat Will Eat screenshots). Sysqo placements use live iframes of `sysqo.com`. Any remaining `.img-ph` divs are still placeholders.
 - **Email.** Contact form composes to `info@shamalama.co.uk`.
 
 ## Design provenance
