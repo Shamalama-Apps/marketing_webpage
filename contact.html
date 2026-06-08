@@ -58,6 +58,14 @@
   /* toast */
   .toast{ position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(140%); background:var(--ink); color:var(--paper); font-weight:600; padding:14px 22px; border-radius:999px; box-shadow:var(--shadow-lg); border:2.5px solid var(--mint); z-index:200; transition:transform .3s cubic-bezier(.2,1.2,.3,1); }
   .toast.show{ transform:translateX(-50%) translateY(0); }
+
+  /* inline booking */
+  .book-card{ background:var(--paper); border:3px solid var(--ink); border-radius:28px; padding:48px 44px; box-shadow:var(--shadow-lg); display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+  @media(max-width:880px){ .book-card{ grid-template-columns:1fr; padding:36px 24px; gap:28px; } }
+  .book-head .tag{ font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); margin-bottom:14px; display:inline-block; }
+  .book-head h2{ font-size:clamp(28px,4vw,46px); line-height:0.98; }
+  .book-frame{ background:var(--paper); border:3px solid var(--ink); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); min-height:560px; }
+  .book-frame iframe{ display:block; width:100%; min-height:560px; border:0; background:var(--paper); }
 </style>
 </head>
 <body>
@@ -151,7 +159,7 @@
         <div class="pv-actions">
           <a class="btn btn-primary" id="liBtn" href="https://www.linkedin.com/in/vanessa-latchem-smith/" target="_blank" rel="noopener">Connect with Vanessa on LinkedIn →</a>
           <a class="btn btn-blue" id="mailBtn" href="#">Email this enquiry</a>
-          <a class="btn btn-paper" id="callBtn" href="#" target="_blank" rel="noopener">Book a 20-min call</a>
+          <a class="btn btn-paper" id="callBtn" href="#book">Book a 20-min call ↓</a>
         </div>
         <div class="pv-foot">
           <span class="mono">✦ updates as you choose</span>
@@ -183,6 +191,20 @@
   </div>
 </section>
 
+<!-- Inline booking -->
+<section class="block wrap" id="book">
+  <div class="book-card rv">
+    <div class="book-head">
+      <div class="tag mono">// pick a slot</div>
+      <h2 class="sec-title">Or pick a time, <em class="hl">right here</em>.</h2>
+      <p class="lead mt-s">20 minutes, no pressure. Choose a slot and you'll get a calendar invite straight away.</p>
+    </div>
+    <div class="book-frame">
+      <iframe src="https://calendar.zoho.eu/eventreqForm/zz080112301576ed6575a3745d2107518582cc039705b8a55590e212770f8834e5ba37ca4669c4071437165ea9f4a1077205371909?theme=0&l=en&tz=Europe%2FLondon" title="Book a 20-minute call with Vanessa" frameborder="0" scrolling="auto" marginwidth="0" marginheight="0" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
 <section class="cta-band">
   <div class="wrap rv">
     <h2>No idea is <em>too early</em>.</h2>
@@ -209,9 +231,7 @@
 
 <script src="site.js"></script>
 <script>
-  // ---- placeholders the user can swap later ----
   var EMAIL = 'info@shamalama.co.uk';
-  var CALL_URL = 'https://cal.com/shamalama/intro'; // swap for your real booking link
 
   var state = { type: 'a website', stage: 'pre-funding', budget: 'a shoestring', timeline: 'as soon as possible' };
 
@@ -251,7 +271,6 @@
     document.getElementById('charcount').textContent = t.length + ' chars';
     document.getElementById('mailBtn').setAttribute('href',
       'mailto:' + EMAIL + '?subject=' + encodeURIComponent('New enquiry, ' + state.type) + '&body=' + encodeURIComponent(t));
-    document.getElementById('callBtn').setAttribute('href', CALL_URL);
   }
 
   // LinkedIn: copy the message, then open the profile
