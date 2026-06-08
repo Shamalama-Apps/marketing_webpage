@@ -460,9 +460,12 @@
     btn.textContent = 'Sending…';
     setStatus('');
 
+    // text/plain + no-cors: skip the CORS preflight Make doesn't answer, accept the opaque response.
+    // We can't read the response status, so a non-throwing fetch is treated as success.
     fetch(BOOKING_WEBHOOK, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({
         name: name,
         email: email,
@@ -477,12 +480,14 @@
         timezone: 'Europe/London',
         source: 'shamalama.co.uk/contact'
       })
-    }).then(function (r) {
-      if (!r.ok) throw new Error('webhook returned ' + r.status);
+    }).then(function () {
       setStatus('Booked! ' + pickedSlot.day + ' at ' + pickedSlot.time + ' — check ' + email + ' for the invite.', 'ok');
       document.getElementById('bookForm').reset();
-      slotGrid.querySelectorAll('.slot-tile').forEach(function (x) { x.classList.remove('sel'); });
+      dayGrid.querySelectorAll('.slot-tile').forEach(function (x) { x.classList.remove('sel'); });
+      timeGrid.querySelectorAll('.slot-tile').forEach(function (x) { x.classList.remove('sel'); });
+      timeStep.setAttribute('hidden', '');
       pickedSlot = null;
+      pickedDay = null;
     }).catch(function () {
       setStatus('Something went wrong sending that — please email ' + EMAIL + ' and we\'ll sort a time.', 'err');
     }).finally(function () {
