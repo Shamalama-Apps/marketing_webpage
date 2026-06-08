@@ -351,7 +351,7 @@
   var DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function pad(n) { n = +n; return n < 10 ? '0' + n : '' + n; }
   function dayLabel(d) { return DAY_NAMES[d.getDay()] + ' ' + d.getDate() + ' ' + MONTH_NAMES[d.getMonth()]; }
   function localIso(d, hhmm) {
     var p = hhmm.split(':');
