@@ -371,6 +371,11 @@
     return (mo >= 3 && mo <= 9) ? '+01:00' : '+00:00';
   }
   function slotIso(d, hhmm) { return localIso(d, hhmm) + londonOffset(d); }
+  function addMinutes(hhmm, mins) {
+    var p = hhmm.split(':');
+    var total = parseInt(p[0], 10) * 60 + parseInt(p[1], 10) + mins;
+    return pad(Math.floor(total / 60)) + ':' + pad(total % 60);
+  }
   function upcomingWeekdays(n) {
     var out = [], d = new Date();
     d.setHours(0, 0, 0, 0);
@@ -421,7 +426,13 @@
         timeGrid.querySelectorAll('.slot-tile').forEach(function (x) { x.classList.remove('sel'); x.setAttribute('aria-checked', 'false'); });
         t.classList.add('sel');
         t.setAttribute('aria-checked', 'true');
-        pickedSlot = { day: dayLabel(d), time: hhmm, local: localIso(d, hhmm), iso: slotIso(d, hhmm) };
+        pickedSlot = {
+          day: dayLabel(d),
+          time: hhmm,
+          local: localIso(d, hhmm),
+          iso: slotIso(d, hhmm),
+          isoEnd: slotIso(d, addMinutes(hhmm, 20))
+        };
         setStatus('');
       });
       timeGrid.appendChild(t);
@@ -460,10 +471,9 @@
         slot_time: pickedSlot.time,
         slot_local: pickedSlot.local,
         slot_iso: pickedSlot.iso,
-        slot_iso_end: pickedSlot.iso.replace(/T(\d{2}):(\d{2}):(\d{2})/, function (_, h, m, s) {
-          var total = parseInt(h, 10) * 60 + parseInt(m, 10) + 20;
-          return 'T' + pad(Math.floor(total / 60)) + ':' + pad(total % 60) + ':' + s;
-        }),
+        slot_iso_end: pickedSlot.isoEnd,
+        slot_zoho_start: pickedSlot.iso.replace(/[-:]/g, ''),
+        slot_zoho_end: pickedSlot.isoEnd.replace(/[-:]/g, ''),
         timezone: 'Europe/London',
         source: 'shamalama.co.uk/contact'
       })
