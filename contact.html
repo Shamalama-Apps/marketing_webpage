@@ -65,9 +65,11 @@
   .book-head .tag{ font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); margin-bottom:14px; display:inline-block; }
   .book-head h2{ font-size:clamp(28px,4vw,46px); line-height:0.98; }
   .book-head p{ margin-top:14px; }
-  .slot-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:32px; }
-  @media(max-width:720px){ .slot-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media(max-width:420px){ .slot-grid{ grid-template-columns:1fr; } }
+  .book-step{ margin-top:28px; }
+  .step-label{ font-size:12.5px; color:var(--ink-soft); margin-bottom:10px; display:block; }
+  .slot-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+  @media(max-width:820px){ .slot-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media(max-width:480px){ .slot-grid{ grid-template-columns:repeat(2,1fr); } }
   .slot-tile{ background:var(--paper); border:3px solid var(--ink); border-radius:18px; padding:16px 14px; cursor:pointer; transition:transform .14s, box-shadow .14s, background .14s; text-align:center; font-family:var(--font-disp); user-select:none; }
   .slot-tile:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--ink); }
   .slot-tile.sel{ background:var(--coral); box-shadow:5px 5px 0 var(--ink); }
@@ -217,7 +219,15 @@
       <p class="lead">20 minutes, no pressure. Choose a slot, drop in your details, and you'll get a calendar invite by email.</p>
     </div>
 
-    <div class="slot-grid" id="slotGrid" role="radiogroup" aria-label="Available time slots"></div>
+    <div class="book-step">
+      <div class="step-label mono">// 01 · pick a day</div>
+      <div class="slot-grid" id="dayGrid" role="radiogroup" aria-label="Pick a day"></div>
+    </div>
+
+    <div class="book-step" id="timeStep" hidden>
+      <div class="step-label mono">// 02 · pick a time</div>
+      <div class="slot-grid" id="timeGrid" role="radiogroup" aria-label="Pick a time"></div>
+    </div>
 
     <form class="book-form" id="bookForm" novalidate>
       <div class="field">
@@ -331,39 +341,79 @@
 
   render();
 
-  // ---- Inline booking: hard-coded slots + Make.com webhook ----
-  // TODO Vanessa: paste your Make webhook URL here once set up.
-  var BOOKING_WEBHOOK = 'https://hook.eu2.make.com/REPLACE_ME';
+  // ---- Inline booking: Make.com webhook + dynamic slot picker ----
+  // Availability rules: weekdays only, six spaced slots within 08:30–18:00.
+  // Adjust TIMES or DAY_COUNT below to change what's offered.
+  var BOOKING_WEBHOOK = 'https://hook.eu1.make.com/n5yhmb6k495ss41oacoroctwok40gx2r';
+  var TIMES = ['08:30', '10:00', '11:30', '14:00', '15:30', '17:00'];
+  var DAY_COUNT = 5;
 
-  // Edit this list to update availability. Each slot needs day, time, and iso (ISO 8601 with timezone).
-  var SLOTS = [
-    { day: 'Tue 9 Jun',  time: '10:00', iso: '2026-06-09T10:00:00+01:00' },
-    { day: 'Tue 9 Jun',  time: '14:00', iso: '2026-06-09T14:00:00+01:00' },
-    { day: 'Wed 10 Jun', time: '11:00', iso: '2026-06-10T11:00:00+01:00' },
-    { day: 'Thu 11 Jun', time: '15:30', iso: '2026-06-11T15:30:00+01:00' },
-    { day: 'Tue 16 Jun', time: '10:00', iso: '2026-06-16T10:00:00+01:00' },
-    { day: 'Thu 18 Jun', time: '14:00', iso: '2026-06-18T14:00:00+01:00' }
-  ];
+  var DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function dayLabel(d) { return DAY_NAMES[d.getDay()] + ' ' + d.getDate() + ' ' + MONTH_NAMES[d.getMonth()]; }
+  function localIso(d, hhmm) {
+    var p = hhmm.split(':');
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + 'T' + p[0] + ':' + p[1] + ':00';
+  }
+  function upcomingWeekdays(n) {
+    var out = [], d = new Date();
+    d.setHours(0, 0, 0, 0);
+    d.setDate(d.getDate() + 1);
+    while (out.length < n) {
+      var dow = d.getDay();
+      if (dow !== 0 && dow !== 6) out.push(new Date(d.getTime()));
+      d.setDate(d.getDate() + 1);
+    }
+    return out;
+  }
 
   var pickedSlot = null;
-  var slotGrid = document.getElementById('slotGrid');
-  SLOTS.forEach(function (s, i) {
+  var pickedDay = null;
+  var dayGrid = document.getElementById('dayGrid');
+  var timeGrid = document.getElementById('timeGrid');
+  var timeStep = document.getElementById('timeStep');
+
+  upcomingWeekdays(DAY_COUNT).forEach(function (d) {
     var t = document.createElement('button');
     t.type = 'button';
     t.className = 'slot-tile';
     t.setAttribute('role', 'radio');
     t.setAttribute('aria-checked', 'false');
-    t.dataset.iso = s.iso;
-    t.innerHTML = '<div class="day">' + s.day + '</div><div class="time">' + s.time + '</div>';
+    t.innerHTML = '<div class="day">' + DAY_NAMES[d.getDay()] + '</div><div class="time">' + d.getDate() + ' ' + MONTH_NAMES[d.getMonth()] + '</div>';
     t.addEventListener('click', function () {
-      slotGrid.querySelectorAll('.slot-tile').forEach(function (x) { x.classList.remove('sel'); x.setAttribute('aria-checked', 'false'); });
+      dayGrid.querySelectorAll('.slot-tile').forEach(function (x) { x.classList.remove('sel'); x.setAttribute('aria-checked', 'false'); });
       t.classList.add('sel');
       t.setAttribute('aria-checked', 'true');
-      pickedSlot = s;
+      pickedDay = d;
+      pickedSlot = null;
+      renderTimes(d);
       setStatus('');
     });
-    slotGrid.appendChild(t);
+    dayGrid.appendChild(t);
   });
+
+  function renderTimes(d) {
+    timeGrid.innerHTML = '';
+    TIMES.forEach(function (hhmm) {
+      var t = document.createElement('button');
+      t.type = 'button';
+      t.className = 'slot-tile';
+      t.setAttribute('role', 'radio');
+      t.setAttribute('aria-checked', 'false');
+      t.innerHTML = '<div class="time">' + hhmm + '</div>';
+      t.addEventListener('click', function () {
+        timeGrid.querySelectorAll('.slot-tile').forEach(function (x) { x.classList.remove('sel'); x.setAttribute('aria-checked', 'false'); });
+        t.classList.add('sel');
+        t.setAttribute('aria-checked', 'true');
+        pickedSlot = { day: dayLabel(d), time: hhmm, local: localIso(d, hhmm) };
+        setStatus('');
+      });
+      timeGrid.appendChild(t);
+    });
+    timeStep.removeAttribute('hidden');
+  }
 
   function setStatus(msg, kind) {
     var el = document.getElementById('bookStatus');
@@ -394,7 +444,7 @@
         notes: notes,
         slot_day: pickedSlot.day,
         slot_time: pickedSlot.time,
-        slot_iso: pickedSlot.iso,
+        slot_local: pickedSlot.local,
         timezone: 'Europe/London',
         source: 'shamalama.co.uk/contact'
       })
