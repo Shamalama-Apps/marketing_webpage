@@ -7,6 +7,9 @@ invoice-*.html
 # In-progress work — un-ignore intentionally when ready to publish
 logo-explorations/
 
+# Image drafts / unused iterations — keep locally, do not publish
+**/_drafts/
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
