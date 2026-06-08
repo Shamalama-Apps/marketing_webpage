@@ -460,26 +460,27 @@
     btn.textContent = 'Sending…';
     setStatus('');
 
-    // text/plain + no-cors: skip the CORS preflight Make doesn't answer, accept the opaque response.
-    // We can't read the response status, so a non-throwing fetch is treated as success.
+    // Form-encoded body: a CORS "simple" content type, so no preflight. Make parses the fields
+    // into structured webhook bundle data — needed for its Zoho Calendar connector to consume them.
+    // We can't read the opaque no-cors response; treat any non-throwing fetch as success.
+    var params = new URLSearchParams();
+    params.append('name', name);
+    params.append('email', email);
+    params.append('notes', notes);
+    params.append('slot_day', pickedSlot.day);
+    params.append('slot_time', pickedSlot.time);
+    params.append('slot_local', pickedSlot.local);
+    params.append('slot_iso', pickedSlot.iso);
+    params.append('slot_iso_end', pickedSlot.isoEnd);
+    params.append('slot_zoho_start', pickedSlot.iso.replace(/[-:]/g, ''));
+    params.append('slot_zoho_end', pickedSlot.isoEnd.replace(/[-:]/g, ''));
+    params.append('timezone', 'Europe/London');
+    params.append('source', 'shamalama.co.uk/contact');
+
     fetch(BOOKING_WEBHOOK, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        notes: notes,
-        slot_day: pickedSlot.day,
-        slot_time: pickedSlot.time,
-        slot_local: pickedSlot.local,
-        slot_iso: pickedSlot.iso,
-        slot_iso_end: pickedSlot.isoEnd,
-        slot_zoho_start: pickedSlot.iso.replace(/[-:]/g, ''),
-        slot_zoho_end: pickedSlot.isoEnd.replace(/[-:]/g, ''),
-        timezone: 'Europe/London',
-        source: 'shamalama.co.uk/contact'
-      })
+      body: params
     }).then(function () {
       setStatus('Booked! ' + pickedSlot.day + ' at ' + pickedSlot.time + ' — check ' + email + ' for the invite.', 'ok');
       document.getElementById('bookForm').reset();
