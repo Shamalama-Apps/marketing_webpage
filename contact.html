@@ -357,6 +357,20 @@
     var p = hhmm.split(':');
     return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + 'T' + p[0] + ':' + p[1] + ':00';
   }
+  function londonOffset(d) {
+    // Returns "+HH:MM" for Europe/London at the given date, DST-aware.
+    try {
+      var parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', timeZoneName: 'longOffset' }).formatToParts(d);
+      var tz = (parts.find(function (p) { return p.type === 'timeZoneName'; }) || {}).value;
+      if (tz === 'GMT' || tz === 'UTC') return '+00:00';
+      var m = tz && tz.match(/GMT([+-])(\d{1,2}):?(\d{0,2})/);
+      if (m) return m[1] + pad(m[2]) + ':' + pad(m[3] || '00');
+    } catch (e) {}
+    // Fallback: rough UK DST window (late Mar → late Oct).
+    var mo = d.getMonth();
+    return (mo >= 3 && mo <= 9) ? '+01:00' : '+00:00';
+  }
+  function slotIso(d, hhmm) { return localIso(d, hhmm) + londonOffset(d); }
   function upcomingWeekdays(n) {
     var out = [], d = new Date();
     d.setHours(0, 0, 0, 0);
@@ -407,7 +421,7 @@
         timeGrid.querySelectorAll('.slot-tile').forEach(function (x) { x.classList.remove('sel'); x.setAttribute('aria-checked', 'false'); });
         t.classList.add('sel');
         t.setAttribute('aria-checked', 'true');
-        pickedSlot = { day: dayLabel(d), time: hhmm, local: localIso(d, hhmm) };
+        pickedSlot = { day: dayLabel(d), time: hhmm, local: localIso(d, hhmm), iso: slotIso(d, hhmm) };
         setStatus('');
       });
       timeGrid.appendChild(t);
@@ -445,6 +459,11 @@
         slot_day: pickedSlot.day,
         slot_time: pickedSlot.time,
         slot_local: pickedSlot.local,
+        slot_iso: pickedSlot.iso,
+        slot_iso_end: pickedSlot.iso.replace(/T(\d{2}):(\d{2}):(\d{2})/, function (_, h, m, s) {
+          var total = parseInt(h, 10) * 60 + parseInt(m, 10) + 20;
+          return 'T' + pad(Math.floor(total / 60)) + ':' + pad(total % 60) + ':' + s;
+        }),
         timezone: 'Europe/London',
         source: 'shamalama.co.uk/contact'
       })
