@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="shortcut icon" href="favicon.ico">
 <title>App &amp; MVP Development Cardiff | Shamalama</title>
-<meta name="description" content="Female-led app studio in Cardiff building affordable MVPs and native apps for early-stage founders. Big ideas, small budgets, real apps. Book a free scoping call." />
+<meta name="description" content="Female-led app studio in Cardiff building affordable MVPs and native apps for early-stage founders. Big ideas, small budgets, real apps." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Shamalama" />
 <meta property="og:locale" content="en_GB" />
@@ -35,6 +35,8 @@
   "name": "Shamalama",
   "description": "Female-led app and MVP development studio building affordable native apps for early-stage founders.",
   "url": "https://shamalama.co.uk",
+  "email": "info@shamalama.co.uk",
+  "priceRange": "££",
   "founder": {
     "@type": "Person",
     "name": "Vanessa Latchem-Smith"
@@ -48,7 +50,43 @@
   "areaServed": [
     {"@type": "City", "name": "Cardiff"},
     {"@type": "Country", "name": "United Kingdom"}
-  ]
+  ],
+  "sameAs": [
+    "https://apps.apple.com/gb/app/can-eat-will-eat/id6762655966"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Shamalama services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Native App Development",
+          "serviceType": "Native App Development",
+          "provider": {"@type": "ProfessionalService", "name": "Shamalama", "url": "https://shamalama.co.uk"}
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "MVP Development",
+          "serviceType": "MVP Development",
+          "provider": {"@type": "ProfessionalService", "name": "Shamalama", "url": "https://shamalama.co.uk"}
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Front-End Web Development",
+          "serviceType": "Front-End Web Development",
+          "provider": {"@type": "ProfessionalService", "name": "Shamalama", "url": "https://shamalama.co.uk"}
+        }
+      }
+    ]
+  }
 }
 </script>
 <style>
@@ -91,7 +129,7 @@
   @media(max-width:820px){ .ap-grid{ grid-template-columns:1fr; } .approach{ padding:46px 28px; } }
   .ap-card{ background:var(--paper); color:var(--ink); border:3px solid var(--ink); border-radius:18px; padding:26px 24px; }
   .ap-card .n{ font-family:var(--font-disp); font-weight:800; font-size:38px; color:var(--coral); line-height:1; }
-  .ap-card h4{ font-weight:700; font-size:20px; margin:12px 0 7px; }
+  .ap-card h3{ font-weight:700; font-size:20px; margin:12px 0 7px; }
   .ap-card p{ font-size:14.5px; font-weight:500; }
   .budget-note{ margin-top:36px; font-family:var(--font-disp); font-weight:700; font-size:clamp(19px,2.5vw,28px); letter-spacing:-0.02em; }
   .budget-note em{ font-style:normal; color:var(--yellow); }
@@ -106,7 +144,7 @@
 
 <nav class="site">
   <div class="wrap nav-in">
-    <a class="brand" href="/"><img class="brand-mark" src="images/brand/mark.svg" alt="" width="36" height="36">Shamalama</a>
+    <a class="brand" href="/"><img class="brand-mark" src="images/brand/mark.svg" alt="Shamalama" width="36" height="36">Shamalama</a>
     <button class="nav-toggle" aria-label="Toggle menu"><span></span></button>
     <div class="nav-links">
       <a href="/#work">Work</a>
@@ -171,6 +209,8 @@
       <div class="browser panel-browser">
         <div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">sysqo.com</span></div>
         <div class="live-preview" style="height:262px;">
+          <!-- TODO: drop a static screenshot of sysqo.com homepage here (~1200x630 webp). Acts as SEO-readable fallback behind the live iframe. -->
+          <img src="images/sysqo-preview.webp" alt="Sysqo enterprise AI website — designed and built by Shamalama" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy" />
           <iframe src="https://sysqo.com/index.html" title="Live preview of sysqo.com" loading="lazy" referrerpolicy="no-referrer" aria-hidden="true" tabindex="-1"></iframe>
         </div>
       </div>
@@ -210,9 +250,9 @@
   <div class="approach rv">
     <h2>Napkin sketch to <em>App Store</em>.</h2>
     <div class="ap-grid">
-      <div class="ap-card"><div class="n">01</div><h4>Scope, free</h4><p>A real conversation about the idea and the smallest version worth building. No invoice for a quote.</p></div>
-      <div class="ap-card"><div class="n">02</div><h4>Prototype fast</h4><p>Something you can hold and test in days, so your idea moves before the money does.</p></div>
-      <div class="ap-card"><div class="n">03</div><h4>Ship &amp; grow</h4><p>Front-end or native, written and owned in-house, out to the store or the open web.</p></div>
+      <div class="ap-card"><div class="n">01</div><h3>Scope, free</h3><p>A real conversation about the idea and the smallest version worth building. No invoice for a quote.</p></div>
+      <div class="ap-card"><div class="n">02</div><h3>Prototype fast</h3><p>Something you can hold and test in days, so your idea moves before the money does.</p></div>
+      <div class="ap-card"><div class="n">03</div><h3>Ship &amp; grow</h3><p>Front-end or native, written and owned in-house, out to the store or the open web.</p></div>
     </div>
     <p class="budget-note">No project too small. No idea too early. <em>No budget too tight to start.</em></p>
     <p class="budget-note" style="margin-top:14px;font-size:clamp(17px,2vw,22px);"><em>Fixed, founder-friendly pricing.</em></p>
@@ -260,17 +300,17 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="/"><img class="brand-mark" src="images/brand/mark-dark.svg" alt="" width="36" height="36">Shamalama</a>
+        <a class="brand" href="/"><img class="brand-mark" src="images/brand/mark-dark.svg" alt="Shamalama" width="36" height="36">Shamalama</a>
         <p class="foot-blurb">Shamalama is a female-led app development studio in Cardiff, Wales, building affordable MVPs and native apps for early-stage founders.</p>
       </div>
       <div class="foot-col">
-        <h5>Work</h5>
+        <p class="footer-nav-heading">Work</p>
         <a href="work-crossways.html">Crossways</a>
         <a href="work-sysqo.html">Sysqo</a>
         <a href="work-can-eat-will-eat.html">Can Eat, Will Eat</a>
       </div>
       <div class="foot-col">
-        <h5>Studio</h5>
+        <p class="footer-nav-heading">Studio</p>
         <a href="about.html">About Vanessa</a>
         <a href="ideas.html">Got an idea?</a>
         <a href="contact.html">Contact</a>
@@ -283,7 +323,7 @@
   </div>
 </footer>
 
-<script src="site.js"></script>
+<script src="site.js" defer></script>
 <script>
   // Scale each .live-preview iframe to fit its container width.
   (function () {
