@@ -91,8 +91,8 @@ nav.site{ position:sticky; top:0; z-index:80; background:var(--paper); border-bo
 .sec-tag{ font-family:var(--font-mono); font-size:14px; font-weight:500; display:inline-block; padding:4px 13px; border:2px solid var(--ink); border-radius:999px; }
 
 /* ---------------- sections ---------------- */
-section.block{ padding:92px 0; }
-section.block.tight{ padding:64px 0; }
+section.block{ padding-block:92px; }
+section.block.tight{ padding-block:64px; }
 .sec-head{ margin-bottom:48px; }
 .sec-head .sec-tag{ margin-bottom:20px; }
 .sec-title{ font-family:var(--font-disp); font-weight:800; font-size:clamp(32px,5vw,60px); line-height:0.98; max-width:20ch; }
@@ -101,7 +101,7 @@ section.block.tight{ padding:64px 0; }
 .lead{ font-size:clamp(18px,2.1vw,22px); font-weight:500; max-width:54ch; }
 
 /* ---------------- hero ---------------- */
-.hero{ padding:78px 0 56px; position:relative; }
+.hero{ padding-block:78px 56px; position:relative; }
 .hero > .rv{ position:relative; z-index:2; }
 .hero h1{ font-family:var(--font-disp); font-weight:800; line-height:0.93; font-size:clamp(46px,8.2vw,118px); }
 .hero h1 em{ font-style:normal; }
