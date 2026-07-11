@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+<title>HIIT Fitness: Multi-Platform Fitness App Case Study | Shamalama</title>
+<meta name="description" content="Multi-platform fitness app built by Shamalama for Casey in Bridgend. AI coaching, meal planner, body scanner, nutrition tracker and social feed — live on iOS, Apple Watch, and Garmin." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Shamalama" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:url" content="https://shamalama.co.uk/work-hiit-fitness.html" />
+<meta property="og:title" content="HIIT Fitness: Multi-Platform Fitness App Case Study | Shamalama" />
+<meta property="og:description" content="Multi-platform fitness app built by Shamalama for Casey in Bridgend. AI coaching, meal planner, body scanner, nutrition tracker and social feed — live on iOS, Apple Watch, and Garmin." />
+<meta property="og:image" content="https://shamalama.co.uk/images/shamalama-og-logo-2x.png" />
+<meta property="og:image:width" content="2400" />
+<meta property="og:image:height" content="1260" />
+<link rel="canonical" href="https://shamalama.co.uk/work-hiit-fitness.html" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* ---- page-level overrides ---- */
+  .proj-hero{ padding-block:64px 0; background:var(--ink); color:var(--paper); }
+  .proj-hero .back-link{ color:oklch(0.7 0.02 280); }
+  .proj-hero .back-link:hover{ color:var(--coral); }
+  .proj-hero .chip{ background:oklch(0.28 0.02 280); color:var(--paper); border-color:oklch(0.35 0.02 280); }
+  .proj-hero .chip.live-chip{ background:var(--hiit-orange); color:#000; border-color:var(--hiit-orange); }
+
+  :root{ --hiit-orange:#f97316; }
+
+  /* ---- hero layout ---- */
+  .hiit-head{ display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:flex-end; }
+  @media(max-width:860px){ .hiit-head{ grid-template-columns:1fr; } }
+  .proj-title{ font-size:clamp(52px,9vw,118px); font-weight:800; line-height:0.9; margin-top:20px; color:var(--paper); }
+  .proj-title em{ font-style:normal; color:var(--hiit-orange); }
+  .proj-tag{ font-size:clamp(17px,2vw,21px); font-weight:500; max-width:46ch; margin-top:20px; color:oklch(0.82 0.01 280); }
+
+  /* platform badge row */
+  .badge-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
+  .badge{ display:inline-flex; align-items:center; gap:10px; font-family:var(--font-disp); font-weight:700; font-size:15px;
+    padding:13px 22px; border-radius:999px; border:2.5px solid oklch(0.35 0.02 280); color:var(--paper);
+    transition:transform .16s, box-shadow .16s; text-decoration:none; }
+  .badge:hover{ transform:translate(-2px,-2px); box-shadow:4px 4px 0 var(--hiit-orange); border-color:var(--hiit-orange); }
+  .badge.coming{ opacity:.55; cursor:default; pointer-events:none; border-style:dashed; }
+
+  /* phone stack in hero */
+  .hiit-screens{ display:flex; gap:16px; justify-content:center; align-items:flex-end; padding-bottom:0; }
+  .hiit-screens .phone{ border-color:oklch(0.35 0.02 280); }
+  .hiit-screens .phone .notch{ background:oklch(0.35 0.02 280); }
+
+  /* ---- story band ---- */
+  .story-band{ background:var(--coral); border-block:3px solid var(--ink); }
+  .story-band .q{ font-family:var(--font-disp); font-weight:800; font-size:clamp(26px,4vw,48px); line-height:1.05; letter-spacing:-0.025em; max-width:22ch; }
+
+  /* ---- features grid ---- */
+  .feat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media(max-width:820px){ .feat-grid{ grid-template-columns:1fr; } }
+  @media(min-width:821px) and (max-width:1060px){ .feat-grid{ grid-template-columns:1fr 1fr; } }
+  .fcard{ background:var(--paper); border:3px solid var(--ink); border-radius:20px; padding:30px 28px; box-shadow:var(--shadow); }
+  .fcard h4{ font-weight:800; font-size:19px; margin-bottom:8px; }
+  .fcard p{ font-size:15px; font-weight:500; line-height:1.55; }
+
+  /* ---- screenshot gallery ---- */
+  .screen-gallery{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; align-items:flex-end; }
+  .screen-gallery .phone{ flex-shrink:0; }
+
+  /* ---- watch + garmin row ---- */
+  .platform-row{ display:grid; grid-template-columns:1.6fr 1fr; gap:36px; align-items:stretch; }
+  @media(max-width:760px){ .platform-row{ grid-template-columns:1fr; gap:28px; } }
+  .platform-card{ background:var(--ink); color:var(--paper); border:3px solid var(--ink); border-radius:28px; padding:44px 40px; box-shadow:var(--shadow-lg); }
+  @media(max-width:600px){ .platform-card{ padding:30px 24px; } }
+  .platform-card h3{ color:var(--paper); font-weight:800; font-size:clamp(24px,3.4vw,36px); margin-top:14px; }
+  .platform-card p{ color:oklch(0.78 0.01 280); font-size:16px; font-weight:500; margin-top:10px; max-width:44ch; }
+  .watch-row{ display:flex; gap:14px; justify-content:center; margin-top:28px; }
+  .watch-frame{ border:3px solid oklch(0.35 0.02 280); border-radius:18px; overflow:hidden; background:oklch(0.15 0.02 280); }
+
+  /* ---- meta list ---- */
+  .meta-list{ display:flex; flex-wrap:wrap; gap:26px; margin-top:32px; }
+  .meta-list .m .k{ font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); }
+  .meta-list .m .v{ font-family:var(--font-disp); font-weight:700; font-size:17px; }
+
+  /* ---- dark section ---- */
+  .dark-section{ background:var(--ink); color:var(--paper); border-block:3px solid var(--ink); }
+  .dark-section .sec-title{ color:var(--paper); }
+</style>
+</head>
+<body>
+
+<nav class="site">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="brand-mark" src="images/brand/mark.svg" alt="Shamalama" width="36" height="36">Shamalama</a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span></button>
+    <div class="nav-links">
+      <a href="/#work" class="active">Work</a>
+      <a href="about.html">About</a>
+      <a href="ideas.html">Ideas</a>
+      <a class="nav-cta" href="contact.html">Start a build</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="proj-hero wrap">
+  <a class="back-link" href="/#work">← All work</a>
+
+  <div class="hiit-head mt-m">
+    <div class="rv in">
+      <div class="chip-row">
+        <span class="chip live-chip">● LIVE ON APP STORE</span>
+        <span class="chip">iOS + APPLE WATCH</span>
+        <span class="chip">GARMIN</span>
+        <span class="chip">NATIVE</span>
+      </div>
+      <h1 class="proj-title">HIIT<br /><em>Fitness.</em></h1>
+      <p class="proj-tag">Every fitness app feature you actually want, in one place. AI coaching, meal planning, body scanning, nutrition tracking, and a social feed to share the wins — across your phone, your watch, and your wrist.</p>
+
+      <div class="badge-row">
+        <a class="badge" href="https://apps.apple.com/gb/app/hiit-fitness/id6764587505" target="_blank" rel="noopener">App Store ↗</a>
+        <a class="badge coming" href="#" aria-label="Google Play — coming soon">Google Play <span style="font-family:var(--font-mono);font-size:12px;font-weight:400;margin-left:4px;">· soon</span></a>
+        <a class="badge" href="https://apps.garmin.com/apps/9e49b49f-6b85-4dd7-9259-5209112b09f5" target="_blank" rel="noopener">Garmin Connect IQ ↗</a>
+      </div>
+
+      <div class="meta-list" style="margin-top:36px;">
+        <div class="m"><div class="k" style="color:oklch(0.58 0.02 280);">CLIENT</div><div class="v" style="color:var(--paper);">Casey, Bridgend</div></div>
+        <div class="m"><div class="k" style="color:oklch(0.58 0.02 280);">PLATFORMS</div><div class="v" style="color:var(--paper);">iOS · watchOS · Garmin · Android</div></div>
+        <div class="m"><div class="k" style="color:oklch(0.58 0.02 280);">STATUS</div><div class="v" style="color:var(--hiit-orange);">Live</div></div>
+      </div>
+    </div>
+
+    <div class="hiit-screens rv" style="padding-top:40px;">
+      <div class="phone" style="width:190px;"><div class="notch"></div>
+        <img class="screen" src="images/hiit/home.jpeg" alt="HIIT Fitness home screen on iPhone" style="height:412px;object-fit:cover;object-position:top;" />
+      </div>
+      <div class="phone" style="width:190px;margin-bottom:32px;"><div class="notch"></div>
+        <img class="screen" src="images/hiit/schedule.jpeg" alt="HIIT Fitness schedule screen on iPhone" style="height:412px;object-fit:cover;object-position:top;" />
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STORY BAND -->
+<section class="block story-band">
+  <div class="wrap-narrow">
+    <div class="rv">
+      <span class="sec-tag">The brief</span>
+      <p class="q" style="margin-top:20px;">"I want the best fitness app features all in one place — and I want it to feel like it was built for serious athletes."</p>
+      <p style="font-size:17.5px;font-weight:500;margin-top:28px;max-width:62ch;">Casey is a creative in Bridgend with a clear vision: the fitness world is full of apps that each do one thing well, and nothing that does everything. He wanted a platform that combined AI coaching, intelligent meal planning, a body composition scanner, full nutrition tracking, and a social layer where athletes could share their progress — all wrapped in a UI that felt as serious as the workouts inside it.</p>
+      <p style="font-size:17.5px;font-weight:500;margin-top:18px;max-width:62ch;">We built it across four platforms: iPhone, Apple Watch, Android, and Garmin — with a dark, high-contrast design language that matches the energy of the people who'd use it every day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="block wrap">
+  <div class="sec-head rv">
+    <span class="sec-tag">What's inside</span>
+    <h2 class="sec-title mt-s">Five tools.<br /><em class="hl">One app.</em></h2>
+  </div>
+  <div class="feat-grid rv">
+    <div class="fcard">
+      <h4>AI Coaching</h4>
+      <p>Personalised workout plans generated and adjusted by AI based on your fitness score, goals, and progress. The coach adapts as you do.</p>
+    </div>
+    <div class="fcard">
+      <h4>Meal Planner</h4>
+      <p>Smart weekly meal planning that works alongside your training schedule. Fuel your workouts, not just your hunger.</p>
+    </div>
+    <div class="fcard">
+      <h4>Body Scanner</h4>
+      <p>Track your physique over time with the built-in body scan tool. Honest progress tracking without the guesswork.</p>
+    </div>
+    <div class="fcard">
+      <h4>Nutrition Tracker</h4>
+      <p>Log calories, macros, and meals. The tracker surfaces insights rather than just numbers — built to help, not overwhelm.</p>
+    </div>
+    <div class="fcard">
+      <h4>Social Feed</h4>
+      <p>Share your workouts, stats, and milestones with a community of people who get it. Stories, trending posts, and real workout share cards.</p>
+    </div>
+    <div class="fcard" style="background:var(--ink);color:var(--paper);border-color:var(--ink);">
+      <h4 style="color:var(--paper);">HIIT Score</h4>
+      <p style="color:oklch(0.78 0.01 280);">A single fitness score that combines activity, consistency and performance into one number — so you always know where you stand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOT GALLERY -->
+<section class="block tight dark-section">
+  <div class="wrap">
+    <div class="sec-head rv" style="text-align:center;">
+      <span class="sec-tag" style="color:oklch(0.7 0.02 280);">In the app</span>
+      <h2 class="sec-title mt-s" style="color:var(--paper);">Built for the<br /><em style="color:var(--hiit-orange);font-style:normal;">serious athlete.</em></h2>
+    </div>
+    <div class="screen-gallery rv">
+      <div class="phone" style="width:190px;"><div class="notch"></div>
+        <img class="screen" src="images/hiit/dashboard.jpeg" alt="HIIT Fitness stats dashboard" style="height:412px;object-fit:cover;object-position:top;" />
+      </div>
+      <div class="phone" style="width:190px;margin-top:40px;"><div class="notch"></div>
+        <img class="screen" src="images/hiit/workout.jpeg" alt="HIIT Fitness workout detail — Metabolic Full-Body Blast" style="height:412px;object-fit:cover;object-position:top;" />
+      </div>
+      <div class="phone" style="width:190px;"><div class="notch"></div>
+        <img class="screen" src="images/hiit/active.jpeg" alt="HIIT Fitness active workout set tracker" style="height:412px;object-fit:cover;object-position:top;" />
+      </div>
+      <div class="phone" style="width:190px;margin-top:40px;"><div class="notch"></div>
+        <img class="screen" src="images/hiit/social.jpeg" alt="HIIT Fitness social feed" style="height:412px;object-fit:cover;object-position:top;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WATCH + GARMIN -->
+<section class="block wrap">
+  <div class="sec-head rv">
+    <span class="sec-tag">Multi-platform</span>
+    <h2 class="sec-title mt-s">Your wrist.<br /><em class="hl">Your watch.</em></h2>
+    <p class="lead mt-s">HIIT Fitness follows you beyond the phone. The Apple Watch companion puts your workout controls and live stats on your wrist during every session. The Garmin Connect IQ app brings the same intelligence to Garmin devices for athletes who prefer it.</p>
+  </div>
+
+  <div class="platform-row rv">
+    <!-- Apple Watch card -->
+    <div class="platform-card">
+      <span class="sec-tag" style="border-color:oklch(0.35 0.02 280);color:oklch(0.7 0.02 280);">Apple Watch</span>
+      <h3>Full workout control from your wrist.</h3>
+      <p>Start sessions, pick your sport, track heart rate and calories, and mark sets done — without touching your phone.</p>
+      <div class="watch-row">
+        <div class="watch-frame" style="width:140px;">
+          <img src="images/hiit/watch-today.png" alt="HIIT Apple Watch today screen" style="width:100%;display:block;" />
+        </div>
+        <div class="watch-frame" style="width:140px;">
+          <img src="images/hiit/watch-sport.png" alt="HIIT Apple Watch sport picker" style="width:100%;display:block;" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Garmin card -->
+    <div class="platform-card">
+      <span class="sec-tag" style="border-color:oklch(0.35 0.02 280);color:oklch(0.7 0.02 280);">Garmin Connect IQ</span>
+      <h3>Built for Garmin athletes too.</h3>
+      <p>Available on the Garmin Connect IQ store — bringing HIIT Fitness to the wrists of cyclists, runners, and triathletes who already rely on Garmin.</p>
+      <div style="margin-top:28px;">
+        <a class="badge" href="https://apps.garmin.com/apps/9e49b49f-6b85-4dd7-9259-5209112b09f5" target="_blank" rel="noopener" style="border-color:oklch(0.35 0.02 280);">Garmin Connect IQ ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band" style="background:var(--ink);color:var(--paper);">
+  <div class="wrap rv">
+    <h2 style="color:var(--paper);">Got an idea this <em style="background:var(--hiit-orange);color:#000;">ambitious?</em></h2>
+    <p style="color:oklch(0.78 0.01 280);">Multi-platform, full-featured, designed to compete with the best — this is the kind of build we live for. Tell us about yours.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="contact.html">Start an enquiry</a>
+      <a class="btn btn-paper" href="ideas.html">See how we work →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/"><img class="brand-mark" src="images/brand/mark-dark.svg" alt="Shamalama" width="36" height="36">Shamalama</a>
+        <p class="foot-blurb">Shamalama is a female-led app development studio in Cardiff, Wales, building affordable MVPs and native apps for early-stage founders.</p>
+      </div>
+      <div class="foot-col">
+        <p class="footer-nav-heading">Work</p>
+        <a href="work-hiit-fitness.html">HIIT Fitness</a>
+        <a href="work-crossways.html">Crossways</a>
+        <a href="work-sysqo.html">Sysqo</a>
+        <a href="work-can-eat-will-eat.html">Can Eat, Will Eat</a>
+      </div>
+      <div class="foot-col">
+        <p class="footer-nav-heading">Studio</p>
+        <a href="about.html">About Vanessa</a>
+        <a href="ideas.html">Got an idea?</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span class="mono">© 2026 Shamalama · Female-led · Every budget</span>
+      <span class="mono">Cardiff, Wales</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js" defer></script>
+</body>
+</html>
