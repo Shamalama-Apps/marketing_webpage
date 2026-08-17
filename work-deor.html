@@ -55,6 +55,9 @@
   .phone .screen{ height:auto; aspect-ratio:9/16; }
   .gallery-note{ font-size:17px; font-weight:500; margin:34px auto 0; max-width:60ch; text-align:center; }
   .note{ background:var(--yellow); border:3px solid var(--ink); border-radius:22px; padding:40px 40px; box-shadow:var(--shadow); }
+  /* uncapped on desktop so the heading sits on a single line; the ch cap only tightens the rag on small screens */
+  .note-head{ font-size:clamp(24px,3.2vw,34px); font-weight:800; margin-top:16px; }
+  @media(max-width:760px){ .note-head{ max-width:26ch; } }
   @media(max-width:760px){
     /* two phones per row instead of a three-row stack, and drop the stagger that breaks the grid feel.
        flex-basis rather than a vw clamp, so the pair always fits the wrap's inner width exactly */
@@ -147,7 +150,7 @@
 
 <section class="block tight wrap">
   <div class="note rv">
-    <h3 style="font-size:clamp(24px,3.2vw,34px);font-weight:800;margin-top:16px;max-width:26ch;">Designed alongside the latest research.</h3>
+    <h3 class="note-head">Designed alongside the latest research.</h3>
     <p style="font-size:16.5px;font-weight:500;margin-top:14px;max-width:62ch;">How the missions are shaped, how long a child is asked to wait, and how a grown-up is brought into every one, all of it is built on current thinking about how young children learn and self-regulate. Written and built in-house in Cardiff, with no accounts, no ads and no data leaving the device. Live on Google Play now, with the App Store to follow.</p>
   </div>
 </section>
