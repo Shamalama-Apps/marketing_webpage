@@ -25,6 +25,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://shamalama.co.uk/work-hiit-fitness.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://shamalama.co.uk/work-crossways.html</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>yearly</changefreq>
@@ -37,8 +43,14 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://shamalama.co.uk/work-deor.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://shamalama.co.uk/work-can-eat-will-eat.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
