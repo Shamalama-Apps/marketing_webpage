@@ -10,13 +10,16 @@ Female-led development studio showcase site. Static HTML/CSS/JS built from a Bol
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Home — hero with bouncing physics shapes, Crossways + Sysqo features, Can Eat Will Eat origin, approach, founder, CTA |
+| `index.html` | Home — hero with bouncing physics shapes, HIIT / Sysqo / Crossways / Deor feature rows, Can Eat Will Eat origin, approach, founder, CTA |
 | `about.html` | About Vanessa, founder bio |
 | `ideas.html` | "Got an idea?" intake walkthrough with crochet-pattern example |
 | `contact.html` | Interactive enquiry composer routing to LinkedIn / email / call |
+| `work-hiit-fitness.html` | HIIT Fitness multi-platform app case study |
 | `work-crossways.html` | Crossways residents' app case study |
 | `work-sysqo.html` | Sysqo website case study |
+| `work-deor.html` | Deor bilingual children's app case study |
 | `work-can-eat-will-eat.html` | Can Eat, Will Eat app case study |
+| `legal/can-eat-will-eat/privacy/` | Unlisted privacy policy (directory + `index.html`, see note below) |
 
 ## Shared assets
 
@@ -27,12 +30,13 @@ Female-led development studio showcase site. Static HTML/CSS/JS built from a Bol
 ## Local preview
 
 ```bash
-cd /c/Users/VanessaLatchem-Smith/Projects/shamalama-website
-python -m http.server 8000
+cd ~/marketing_webpage
+python3 -m http.server 8000
 # open http://localhost:8000/
 ```
 
-Or just double-click `index.html`.
+Or just double-click `index.html`. Check case-study pages at a phone width too — the
+screenshot galleries have their own breakpoints.
 
 ## Ship a change
 
@@ -53,9 +57,54 @@ The "pick a time" widget on `contact.html` posts to a **Make.com** webhook which
 - Payload is sent as `application/x-www-form-urlencoded` (URLSearchParams body). This is critical: `application/json` triggers a CORS preflight Make doesn't answer, and `text/plain` arrives at Make as a string blob the Zoho connector can't read. Form-encoding is the sweet spot — no preflight, Make parses into proper bundle fields.
 - Make Zoho Calendar mappings must be inserted as **pills** from the bundle picker (not typed as text and not wrapped in `parseDate()` — both have failed in past). Start = `1. slot_zoho_start`, End = `1. slot_zoho_end`.
 
+## Store links
+
+Every app on the site links to a **verified live** listing. Before adding or changing one,
+confirm it resolves — a Play URL for an unpublished or suspended app returns 404, and a
+bad link is worse than no link:
+
+```bash
+curl -sL -o /dev/null -w "%{http_code}\n" "https://play.google.com/store/apps/details?id=PACKAGE"
+```
+
+| App | Store | ID / package |
+| --- | --- | --- |
+| Can Eat, Will Eat | App Store | `id6762655966` |
+| Can Eat, Will Eat | Google Play | `com.shamalama.caneatwilleat` |
+| Deor | Google Play | `com.shamalama.deor` |
+| Deor | App Store | not yet — Apple account is converting individual → organisation |
+| HIIT Fitness | App Store | `id6764587505` |
+| HIIT Fitness | Google Play | `com.hiitfitness.app` |
+| HIIT Fitness | Garmin Connect IQ | `9e49b49f-…` |
+
+The homepage `sameAs` JSON-LD lists **only** apps published under the Shamalama developer
+account (Can Eat Will Eat, Deor). HIIT's Play developer is "HIIT Fitness", a separate
+account, so it is deliberately excluded — `sameAs` asserts identity, not portfolio.
+
+Deor's case study states that **official Cymraeg translation is in progress**; the shipped
+Welsh is machine-translated placeholder. Keep that line until the real translation lands.
+
+## SEO conventions
+
+Applied across all pages — match them when adding one:
+
+- `<title>` ≤ 60 chars, `<meta name="description">` ≤ 160 (Google truncates past that)
+- title/description mirrored into `og:` **and** `twitter:` tags — change all three together
+- `canonical` and `og:url` must match
+- one `<h1>` per page
+- every raster `<img>` needs `alt` plus explicit `width`/`height` (intrinsic pixel size) to
+  avoid layout shift. `work-hiit-fitness.html`, `work-crossways.html` and `about.html` are
+  still missing these — 14 images outstanding
+- Welsh words wrapped in `<span lang="cy">`
+- new pages must be added to `sitemap.xml` **and** the footer "Work" column on every page
+
 ## Known TODOs
 
-- **Real images.** Most placeholder divs have been replaced with real `<img>` tags (founder portraits, Crossways and Can Eat Will Eat screenshots). Sysqo placements use live iframes of `sysqo.com`. Any remaining `.img-ph` divs are still placeholders.
+- **Image dimensions.** 14 raster images across `work-hiit-fitness.html` (8),
+  `work-crossways.html` (5) and `about.html` (1) still lack `width`/`height`.
+- **Real images.** Most placeholder divs have been replaced with real `<img>` tags.
+  Sysqo placements use live iframes of `sysqo.com`. Any remaining `.img-ph` divs are still
+  placeholders.
 - **Email.** Contact form composes to `info@shamalama.co.uk`.
 
 ## Design provenance
