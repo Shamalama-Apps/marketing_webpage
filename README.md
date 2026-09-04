@@ -19,6 +19,7 @@ Female-led development studio showcase site. Static HTML/CSS/JS built from a Bol
 | `work-sysqo.html` | Sysqo website case study |
 | `work-deor.html` | Deor bilingual children's app case study |
 | `work-can-eat-will-eat.html` | Can Eat, Will Eat app case study |
+| `work-west-wales-roofing.html` | West Wales Roofing website and CMS case study |
 | `legal/can-eat-will-eat/privacy/` | Unlisted privacy policy (directory + `index.html`, see note below) |
 
 ## Shared assets
@@ -83,6 +84,33 @@ account, so it is deliberately excluded — `sameAs` asserts identity, not portf
 
 Deor's case study states that **official Cymraeg translation is in progress**; the shipped
 Welsh is machine-translated placeholder. Keep that line until the real translation lands.
+
+## Live previews, not screenshots
+
+The two website case studies, `work-sysqo.html` and `work-west-wales-roofing.html`,
+embed the real site in an `iframe` scaled from a 1440px viewport rather than
+shipping screenshots. They never go stale, but they only work if the target site
+permits framing.
+
+`west-wales-roofing.com` sets
+`Content-Security-Policy: frame-ancestors 'self' https://shamalama.co.uk`.
+`X-Frame-Options` cannot name a second origin, so it was replaced. **If a preview
+ever renders blank, check that header on the target site first.** Opening these
+pages from `file://` also shows blank frames, which is correct rather than broken.
+
+## Adding a case study touches six things
+
+`work-<name>.html`, a `feat-row` on the home page (they alternate `rv` and
+`flip rv` — match the sequence), the footer Work column, and `sitemap.xml`.
+
+Two pages format that footer column differently to the rest, so a single
+find-and-replace across `*.html` misses them: **`about.html` and
+`work-hiit-fitness.html`** need a separate pass. Verify with:
+
+```bash
+for f in *.html; do grep -q 'footer-nav-heading">Work' "$f" &&
+  { grep -q 'work-NEW-PAGE' "$f" || echo "MISSING: $f"; }; done
+```
 
 ## SEO conventions
 
