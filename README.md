@@ -10,7 +10,7 @@ Female-led development studio showcase site. Static HTML/CSS/JS built from a Bol
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Home — hero with bouncing physics shapes, HIIT / Sysqo / Crossways / Deor feature rows, Can Eat Will Eat origin, approach, founder, CTA |
+| `index.html` | Home — hero with bouncing physics shapes, HIIT / Go Motee / West Wales Roofing / Sysqo / Crossways / Deor feature rows, Can Eat Will Eat origin, approach, founder, CTA |
 | `about.html` | About Vanessa, founder bio |
 | `ideas.html` | "Got an idea?" intake walkthrough with crochet-pattern example |
 | `contact.html` | Interactive enquiry composer routing to LinkedIn / email / call |
@@ -20,6 +20,7 @@ Female-led development studio showcase site. Static HTML/CSS/JS built from a Bol
 | `work-deor.html` | Deor bilingual children's app case study |
 | `work-can-eat-will-eat.html` | Can Eat, Will Eat app case study |
 | `work-west-wales-roofing.html` | West Wales Roofing website and CMS case study |
+| `work-go-motee.html` | Go Motee courier website and booking system case study |
 | `legal/can-eat-will-eat/privacy/` | Unlisted privacy policy (directory + `index.html`, see note below) |
 
 ## Shared assets
@@ -87,7 +88,7 @@ Welsh is machine-translated placeholder. Keep that line until the real translati
 
 ## Live previews, not screenshots
 
-The two website case studies, `work-sysqo.html` and `work-west-wales-roofing.html`,
+The website case studies, `work-sysqo.html`, `work-west-wales-roofing.html` and `work-go-motee.html`,
 embed the real site in an `iframe` scaled from a 1440px viewport rather than
 shipping screenshots. They never go stale, but they only work if the target site
 permits framing.
@@ -95,7 +96,8 @@ permits framing.
 `west-wales-roofing.com` sets
 `Content-Security-Policy: frame-ancestors 'self' https://shamalama.co.uk`.
 `X-Frame-Options` cannot name a second origin, so it was replaced. **If a preview
-ever renders blank, check that header on the target site first.** Opening these
+ever renders blank, check that header on the target site first.** `www.gomotee.com` needs
+the same header, set in `~/gomotee/src/_headers.njk`. Opening these
 pages from `file://` also shows blank frames, which is correct rather than broken.
 
 ## Adding a case study touches six things
